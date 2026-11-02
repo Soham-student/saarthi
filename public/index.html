@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101412" />
+    <title>Saarthi — cockpit voice assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="dashboard-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Saarthi cockpit home">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>SAARTHI<span class="brand-dot">/</span></span>
+          <span class="brand-context">COCKPIT OS</span>
+        </a>
+        <div class="topbar-status">
+          <span class="connection"><i></i> SARVAM LINKED</span>
+          <span class="top-divider"></span>
+          <span class="signal">◔ <span>LTE</span></span>
+          <span class="signal">⌁ <span>BT</span></span>
+          <span class="top-divider"></span>
+          <time id="clock">--:--</time>
+        </div>
+        <button class="avatar" type="button" aria-label="Driver profile">A</button>
+      </header>
+
+      <div class="dashboard-body">
+        <nav class="side-nav" aria-label="Main navigation">
+          <button class="nav-item active" type="button" aria-label="Cockpit overview" title="Cockpit overview"><span class="nav-icon">◫</span><span class="nav-label">COCKPIT</span></button>
+          <button class="nav-item" type="button" aria-label="Voice assistant" title="Voice assistant" id="navVoice"><span class="nav-icon">◉</span><span class="nav-label">SAARTHI</span></button>
+          <button class="nav-item" type="button" aria-label="Vehicle systems" title="Vehicle systems"><span class="nav-icon">◇</span><span class="nav-label">VEHICLE</span></button>
+          <span class="nav-spacer"></span>
+          <button class="nav-item" type="button" aria-label="Settings" title="Settings"><span class="nav-icon">⚙</span><span class="nav-label">SETUP</span></button>
+        </nav>
+
+        <main class="main-content">
+          <section class="dashboard-heading">
+            <div>
+              <div class="overline"><span class="overline-dot"></span> DRIVER PROFILE <span class="slash">/</span> AARAV</div>
+              <h1>Good evening<span class="heading-period">.</span></h1>
+              <p class="heading-sub">Your voice-first drive companion is ready.</p>
+            </div>
+            <div class="vehicle-pill"><span class="vehicle-pill-icon">EV</span><span><b>CONCEPT VEHICLE</b><small>DEMO SIMULATION</small></span><span class="chevron">⌄</span></div>
+          </section>
+
+          <section class="metrics-row" aria-label="Simulated vehicle status">
+            <article class="metric-card"><span class="metric-icon range-icon">↗</span><span class="metric-copy"><small>EST. RANGE</small><strong>412 <i>km</i></strong></span><span class="metric-caption">SIMULATED</span></article>
+            <article class="metric-card"><span class="metric-icon battery-icon">▰</span><span class="metric-copy"><small>BATTERY</small><strong>86 <i>%</i></strong></span><span class="metric-bar"><i></i></span></article>
+            <article class="metric-card"><span class="metric-icon temp-icon">◌</span><span class="metric-copy"><small>CABIN</small><strong>22.5 <i>°C</i></strong></span><span class="metric-caption">AUTO</span></article>
+            <article class="metric-card ride-card"><span class="metric-icon ride-icon">⌁</span><span class="metric-copy"><small>DRIVE MODE</small><strong>Comfort</strong></span><span class="metric-caption">PARKED</span></article>
+          </section>
+
+          <div class="cockpit-grid">
+            <section class="assistant-panel" id="assistantPanel" aria-labelledby="assistantTitle">
+              <div class="assistant-top">
+                <div class="assistant-identity"><span class="assistant-logo"><i></i><i></i><i></i></span><span><b>SAARTHI VOICE</b><small>MULTILINGUAL AI CO-PILOT</small></span></div>
+                <span class="demo-badge"><i></i> SYSTEM READY</span>
+              </div>
+
+              <div class="assistant-content">
+                <div class="assistant-prompt">
+                  <span class="section-index">01 <i></i> VOICE INPUT</span>
+                  <h2 id="assistantTitle">Where would you<br /><em>like to go?</em></h2>
+                  <p>Speak naturally. I’ll listen, understand your request, and reply in your language.</p>
+                  <div class="language-chip"><span>◎</span><span>22 Indic languages + English</span><span class="chip-separator">·</span><span>AUTO DETECT</span></div>
+                </div>
+                <div class="voice-control">
+                  <div class="voice-orbit orbit-large"></div><div class="voice-orbit orbit-small"></div>
+                  <button class="mic-button" id="micButton" type="button" aria-label="Start voice assistant">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"></path></svg>
+                  </button>
+                  <span class="mic-label" id="micLabel">TAP TO SPEAK</span>
+                </div>
+              </div>
+
+              <div class="voice-status" id="voiceStatus" aria-live="polite">
+                <div class="status-icon"><span></span></div>
+                <div class="status-copy"><b id="voiceState">Voice assistant standing by</b><small id="voiceHint">Tap the microphone to activate speech detection</small></div>
+                <div class="recording-time" id="recordingTime">00:00</div>
+              </div>
+
+              <div class="audio-monitor" aria-label="Live microphone activity">
+                <div class="audio-monitor-head"><span>LIVE INPUT</span><span id="inputQuality">MIC CHECK · READY</span></div>
+                <div class="waveform" id="waveform" aria-hidden="true"></div>
+                <div class="audio-labels"><span>VOICE ACTIVITY</span><span id="vadLabel">WAITING FOR SPEECH</span><span>20 SEC MAX</span></div>
+              </div>
+
+              <div class="conversation" id="conversation" aria-live="polite" hidden>
+                <article class="transcript-card">
+                  <div class="result-label"><span class="result-dot user-dot"></span> YOU <span id="detectedLanguage"></span></div>
+                  <p id="transcriptText"></p>
+                </article>
+                <article class="reply-card">
+                  <div class="result-label"><span class="result-dot ai-dot"></span> SAARTHI <span class="reply-language" id="replyLanguage"></span></div>
+                  <p id="answerText"></p>
+                  <audio id="answerAudio" controls hidden></audio>
+                </article>
+              </div>
+
+              <div class="assistant-footer"><span><i class="privacy-lock">⌑</i> ENCRYPTED API REQUEST</span><span>VOICE PROCESSING BY <b>SARVAM AI</b></span><span>● MIC PERMISSION REQUIRED</span></div>
+            </section>
+
+            <aside class="right-column">
+              <section class="vehicle-card">
+                <div class="panel-heading"><span><small>VEHICLE PROFILE</small><b>EV concept</b></span><span class="more-button">•••</span></div>
+                <div class="car-scene" aria-label="Illustration of a concept electric vehicle">
+                  <div class="scene-glow"></div>
+                  <svg class="car-art" viewBox="0 0 420 150" role="img" aria-label="Electric car illustration">
+                    <defs><linearGradient id="carPaint" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#d9e4d7"/><stop offset=".55" stop-color="#82958a"/><stop offset="1" stop-color="#485a51"/></linearGradient><linearGradient id="glass" x1="0" x2="1"><stop stop-color="#14201d"/><stop offset="1" stop-color="#33463e"/></linearGradient></defs>
+                    <ellipse cx="211" cy="126" rx="166" ry="12" fill="#020605" opacity=".55"/><path d="M50 99c3-10 13-17 27-20l36-8 38-36c8-8 19-12 31-12h64c15 0 28 7 38 19l26 30 40 10c13 3 22 11 25 21l5 18H41l9-22Z" fill="url(#carPaint)" stroke="#dce8da" stroke-opacity=".3"/><path d="m162 42-37 33h74V34h-15c-9 0-16 3-22 8Zm48-8v41h87l-24-28c-7-8-16-13-28-13h-35Z" fill="url(#glass)" stroke="#111b17" stroke-width="3"/><path d="M124 78h176M78 91l-14 9m269-1 22 7" stroke="#202e28" stroke-width="3" opacity=".7"/><path d="M42 109h26m283 0h29" stroke="#c4ff91" stroke-width="4" stroke-linecap="round"/><circle cx="113" cy="114" r="22" fill="#111917" stroke="#66776d" stroke-width="5"/><circle cx="113" cy="114" r="9" fill="#9cac9d"/><circle cx="320" cy="114" r="22" fill="#111917" stroke="#66776d" stroke-width="5"/><circle cx="320" cy="114" r="9" fill="#9cac9d"/>
+                  </svg>
+                  <div class="scene-tag"><span class="scene-tag-dot"></span> SIMULATED STATUS</div>
+                </div>
+                <div class="vehicle-stats"><div><small>RANGE</small><b>412 <i>km</i></b></div><div><small>BATTERY</small><b>86 <i>%</i></b></div><div><small>CHARGING</small><b class="charging-off">OFF</b></div></div>
+              </section>
+
+              <section class="understanding-card">
+                <div class="panel-heading"><span><small>VOICE INTELLIGENCE</small><b>Built to understand</b></span><span class="intel-spark">✳</span></div>
+                <div class="intel-list">
+                  <div><span class="intel-number">01</span><span><b>Detect</b><small>Voice activity &amp; silence</small></span><i class="intel-check">✓</i></div>
+                  <div><span class="intel-number">02</span><span><b>Recognize</b><small>Language &amp; car vocabulary</small></span><i class="intel-check">✓</i></div>
+                  <div><span class="intel-number">03</span><span><b>Understand</b><small>Conversation context</small></span><i class="intel-check">✓</i></div>
+                </div>
+                <div class="confidence-row"><span>LANGUAGE CONFIDENCE</span><b id="confidenceValue">—</b></div>
+                <div class="confidence-track"><i id="confidenceBar"></i></div>
+              </section>
+            </aside>
+          </div>
+
+          <div class="systems-grid">
+            <section class="system-panel navigation-panel" id="navigationPanel">
+              <div class="system-panel-heading"><div><span class="section-index">03 <i></i> SYSTEM NAVIGATION</span><h3>Maps &amp; route</h3></div><span class="panel-status"><i></i> DEMO MAP</span></div>
+              <div class="map-view">
+                <svg class="map-lines" viewBox="0 0 700 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Decorative simulated map">
+                  <path class="map-water" d="M0 15 92 0l75 50 75-12 71 40-35 39-116-5-47 58-65-7-50 42Z" />
+                  <path class="map-park" d="m393 0 122 23 33 76-42 53-74-24-53-61Z" />
+                  <path class="map-road minor" d="M-30 183 110 140l110 20 97-54 89 26 129-61 190 17M-10 60l156 25 97-52 65 83 122 43 80 80M85 260l30-91 91-69 90 13 48-56M240 270l20-101 65-53 77-23 80-63M450 260l-15-93 42-68 96-47 100 15" />
+                  <path class="map-road major" d="M-20 226 117 178l107-32 101-58 100 18 111-57 183 29M70 -20l79 83 38 87 102 47 105 9 103 35 221 4" />
+                  <path id="routePath" class="map-route" d="M133 172 220 146 325 88 426 106 536 49" />
+                  <circle class="map-start" cx="133" cy="172" r="7" /><circle class="map-end" id="mapEnd" cx="536" cy="49" r="7" />
+                  <text x="188" y="119">RIVER PARKWAY</text><text x="430" y="191">EAST LOOP</text><text x="518" y="31" id="mapDestinationLabel">CHARGING HUB</text>
+                </svg>
+                <div class="map-topline"><span><i></i> SAMPLE AREA · GPS SIMULATED</span><span>MAP DATA PREVIEW</span></div>
+                <div class="map-scale">N ↑ <span></span> 2 KM</div>
+              </div>
+              <div class="route-search"><span>⌕</span><input id="destinationInput" type="text" value="Central charging hub" aria-label="Destination" maxlength="60" /><button id="routeButton" type="button">SET ROUTE <b>↗</b></button></div>
+              <div class="route-options"><span>RECENT</span><button type="button" data-destination="Office">⌂ Office</button><button type="button" data-destination="Charging hub">ϟ Charging hub</button><button type="button" data-destination="Coffee stop">◉ Coffee stop</button><span class="route-summary" id="routeSummary">ROUTE PREVIEW · 18 MIN</span></div>
+            </section>
+
+            <section class="system-panel tire-panel" id="tirePanel">
+              <div class="system-panel-heading"><div><span class="section-index">04 <i></i> TYRE MONITOR</span><h3>Pressure &amp; condition</h3></div><span class="panel-status"><i></i> TPMS SIMULATED</span></div>
+              <div class="tire-display">
+                <div class="tire-wheel wheel-fl" data-wheel="FL"><span>FL</span><b id="pressure-FL">34</b><small>PSI</small><i></i></div>
+                <div class="tire-wheel wheel-fr" data-wheel="FR"><span>FR</span><b id="pressure-FR">34</b><small>PSI</small><i></i></div>
+                <div class="tire-car" aria-hidden="true"><span>SAARTHI EV</span></div>
+                <div class="tire-wheel wheel-rl" data-wheel="RL"><span>RL</span><b id="pressure-RL">33</b><small>PSI</small><i></i></div>
+                <div class="tire-wheel wheel-rr" data-wheel="RR"><span>RR</span><b id="pressure-RR">33</b><small>PSI</small><i></i></div>
+              </div>
+              <div class="tire-foot"><span class="tire-normal"><i></i> DEMO VALUES NORMAL</span><span>WARN &lt;29 PSI · VEHICLE LIMITS VARY</span></div>
+              <div class="tire-alert" id="tireAlert" hidden><b>LOW PRESSURE</b><span id="tireAlertText"></span></div>
+            </section>
+          </div>
+
+          <div class="systems-grid lower-systems">
+            <section class="system-panel alert-panel" id="alertPanel">
+              <div class="system-panel-heading"><div><span class="section-index">05 <i></i> SAFETY MONITOR</span><h3>Driver alerts</h3></div><span class="panel-status panel-status-demo"><i></i> SIMULATOR</span></div>
+              <div class="alert-list" id="alertList" aria-live="polite"><div class="empty-alert"><span>✓</span><div><b>No active demo alerts</b><small>Simulate a vehicle signal below to preview spoken alerts.</small></div></div></div>
+              <details class="signal-simulator" open>
+                <summary>DEMO SIGNAL CONTROLS <span>NO VEHICLE SENSORS CONNECTED</span></summary>
+                <div class="speed-control"><label for="speedSlider">SIMULATED SPEED <b><span id="speedValue">0</span> km/h</b></label><input id="speedSlider" type="range" min="0" max="120" value="0" /><div class="speed-range"><span>PARKED</span><span>ALERT @ 90</span><span>120 KM/H</span></div></div>
+                <div class="signal-buttons"><button type="button" id="lowTireButton">⚠ Low tyre</button><button type="button" id="fatigueButton">◉ Fatigue</button><button type="button" id="impactButton">⌁ Impact</button><button type="button" id="systemFaultButton">◇ Sensor fault</button><button type="button" id="resetSignalsButton">Reset demo</button></div>
+              </details>
+            </section>
+
+            <div class="system-stack">
+              <section class="system-panel apps-panel" id="appsPanel">
+                <div class="system-panel-heading"><div><span class="section-index">06 <i></i> INFOTAINMENT</span><h3>Apps &amp; media</h3></div><span class="panel-status">PARKED MODE</span></div>
+                <div class="apps-grid">
+                  <button class="app-tile music-tile" type="button" id="musicButton"><span class="app-icon">♫</span><span><b>Music</b><small id="musicState">PLAYER UI PREVIEW</small></span><i>▶</i></button>
+                  <button class="app-tile maps-tile" type="button" id="mapsButton"><span class="app-icon">⌖</span><span><b>Maps</b><small>DEMO ROUTES</small></span><i>↗</i></button>
+                  <button class="app-tile youtube-music-tile" type="button" id="youtubeMusicButton"><span class="app-icon">▶</span><span><b>YouTube Music</b><small>AUDIO ONLY</small></span><i>↗</i></button>
+                  <button class="app-tile youtube-tile" type="button" id="youtubeVideoButton"><span class="app-icon">▣</span><span><b>YouTube video</b><small id="videoAppState">PARKED ONLY</small></span><i>▰</i></button>
+                </div>
+                <div class="media-player" id="mediaPlayer"><div class="album-art">♫</div><div class="track-copy"><b>Midnight Drive</b><small>PLAYER MOCK · NO AUDIO SOURCE</small></div><button type="button" id="playPauseButton" aria-label="Play player preview">▶</button><div class="track-progress"><i id="trackProgress"></i></div></div>
+                <p class="video-notice" id="videoNotice">Video playback stays locked while the simulated vehicle is moving.</p>
+              </section>
+
+              <section class="system-panel device-panel" id="systemPanel">
+                <div class="system-panel-heading"><div><span class="section-index">07 <i></i> SYSTEM INFORMATION</span><h3>Sound &amp; system</h3></div><span class="panel-status panel-status-demo"><i></i> DEMO STATUS</span></div>
+                <div class="speaker-controls"><div class="speaker-title"><span class="speaker-symbol">◖)))</span><span><b>Voice audio output</b><small>BROWSER SPEAKERS · DEMO</small></span><b class="volume-readout"><span id="volumeValue">62</span>%</b></div><label for="volumeSlider">VOICE VOLUME</label><input id="volumeSlider" type="range" min="0" max="100" value="62" /><label for="balanceSlider">BALANCE PREVIEW <span id="balanceValue">CENTER</span></label><input id="balanceSlider" type="range" min="-50" max="50" value="0" /></div>
+                <div class="system-info-grid"><div><small>VOICE SERVICE</small><b>Sarvam AI · API</b></div><div><small>MAP SOURCE</small><b>Demo routes</b></div><div><small>VEHICLE LINK</small><b>Not connected</b></div><div><small>ALERT VOICE</small><b>English demo</b></div></div>
+              </section>
+            </div>
+          </div>
+
+          <section class="command-section">
+            <div class="command-header"><div><span class="section-index">02 <i></i> QUICK VOICE PROMPTS</span><h3>Try saying something like…</h3></div><span class="command-note">EXAMPLES ONLY · NO VEHICLE CONTROL CONNECTED</span></div>
+            <div class="command-grid">
+              <button class="command-card" type="button" data-prompt="How can I find a nearby EV charging station?"><span class="command-symbol energy-symbol">ϟ</span><span><b>Find a charger</b><small>EV energy &amp; range</small></span><span class="command-arrow">↗</span></button>
+              <button class="command-card" type="button" data-prompt="What voice commands can help with climate and comfort?"><span class="command-symbol climate-symbol">☼</span><span><b>Cabin comfort</b><small>Climate &amp; controls</small></span><span class="command-arrow">↗</span></button>
+              <button class="command-card" type="button" data-prompt="What hands-free commands can help with navigation and media?"><span class="command-symbol route-symbol">⌁</span><span><b>On the move</b><small>Navigation &amp; media</small></span><span class="command-arrow">↗</span></button>
+              <button class="command-card" type="button" data-prompt="Explain regenerative braking in simple terms."><span class="command-symbol vehicle-symbol">◇</span><span><b>Know your car</b><small>Vehicle features</small></span><span class="command-arrow">↗</span></button>
+            </div>
+          </section>
+
+          <p class="safety-note"><span>i</span> Saarthi is a demonstration and is not connected to a real vehicle. Speed, tyre, fatigue, impact, map, media, and system signals are simulated. Real crash alerts, drowsiness detection, TPMS, and speed signals need validated vehicle hardware; critical alerts must work locally if cloud or network service is unavailable. Do not interact with screens while driving.</p>
+        </main>
+      </div>
+      <footer class="bottom-bar"><span>SAARTHI COCKPIT <i>•</i> SARVAM AI</span><span>CONCEPT INTERFACE <i>•</i> ALL VEHICLE VALUES ARE SIMULATED</span><span>BUILD 0.2.0</span></footer>
+    </div>
+  </body>
+</html>
