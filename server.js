@@ -51,7 +51,10 @@ app.post('/api/voice', upload.single('audio'), async (req, res) => {
     if (!transcript) return res.status(422).json({ error: 'I could not hear that clearly. Try again.' });
 
     const detectedLanguage = transcriptResult.language_code || 'en-IN';
-    const responseLanguage = ttsLanguages.has(detectedLanguage) ? detectedLanguage : 'en-IN';
+    const preferredLanguage = typeof req.body?.preferredLanguage === 'string' ? req.body.preferredLanguage : 'auto';
+    const responseLanguage = ttsLanguages.has(preferredLanguage)
+      ? preferredLanguage
+      : ttsLanguages.has(detectedLanguage) ? detectedLanguage : 'en-IN';
     const rawSpeed = Number(req.body?.speed || 0);
     const reportedSpeed = Number.isFinite(rawSpeed) ? Math.max(0, Math.min(300, rawSpeed)) : 0;
     const drivingContext = reportedSpeed >= 90
@@ -73,9 +76,11 @@ app.post('/api/voice', upload.single('audio'), async (req, res) => {
     } catch {
       history = [];
     }
-    const languageInstruction = responseLanguage === detectedLanguage
-      ? `The driver spoke ${detectedLanguage}. Reply in that language.`
-      : `The driver spoke ${detectedLanguage}, which this speech voice cannot read aloud. Reply in English so the spoken response matches its voice.`;
+    const languageInstruction = preferredLanguage !== 'auto' && ttsLanguages.has(preferredLanguage)
+      ? `The driver spoke ${detectedLanguage}. Reply in ${responseLanguage} because that is the driver's selected reply language.`
+      : responseLanguage === detectedLanguage
+        ? `The driver spoke ${detectedLanguage}. Reply in that language.`
+        : `The driver spoke ${detectedLanguage}, which this speech voice cannot read aloud. Reply in English so the spoken response matches its voice.`;
     const chatResult = await client.chat.completions({
       model: 'sarvam-105b-conversations',
       messages: [

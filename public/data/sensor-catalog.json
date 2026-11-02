@@ -1,0 +1,3314 @@
+{
+  "title": "Complete car-sensor catalogue",
+  "count": 211,
+  "sampleNotice": "All displayed readings are synthetic examples, not live vehicle data. Values may not describe one physically coherent vehicle. Use vehicle/OEM warnings and specifications for real operation.",
+  "categories": [
+    {
+      "id": "engine-related-information",
+      "name": "Engine",
+      "source": "OBD-II / engine ECU",
+      "signals": [
+        {
+          "id": 1,
+          "name": "Engine RPM",
+          "sample": {
+            "value": "850",
+            "unit": "rpm"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 2,
+          "name": "Engine temperature",
+          "sample": {
+            "value": "91",
+            "unit": "°C"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 3,
+          "name": "Coolant temperature",
+          "sample": {
+            "value": "88",
+            "unit": "°C"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 4,
+          "name": "Engine oil temperature",
+          "sample": {
+            "value": "94",
+            "unit": "°C"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 5,
+          "name": "Engine oil pressure",
+          "sample": {
+            "value": "2.6",
+            "unit": "bar"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 6,
+          "name": "Engine load percentage",
+          "sample": {
+            "value": "21",
+            "unit": "%"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 7,
+          "name": "Engine torque",
+          "sample": {
+            "value": "132",
+            "unit": "Nm"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 8,
+          "name": "Engine power",
+          "sample": {
+            "value": "18",
+            "unit": "kW"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 9,
+          "name": "Intake air temperature",
+          "sample": {
+            "value": "32",
+            "unit": "°C"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 10,
+          "name": "Intake manifold pressure",
+          "sample": {
+            "value": "101",
+            "unit": "kPa"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 11,
+          "name": "Intake air pressure",
+          "sample": {
+            "value": "99",
+            "unit": "kPa"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 12,
+          "name": "Mass air flow (MAF)",
+          "sample": {
+            "value": "4.8",
+            "unit": "g/s"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 13,
+          "name": "Throttle position",
+          "sample": {
+            "value": "13",
+            "unit": "%"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 14,
+          "name": "Throttle opening percentage",
+          "sample": {
+            "value": "13",
+            "unit": "%"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 15,
+          "name": "Fuel injection timing",
+          "sample": {
+            "value": "12",
+            "unit": "° BTDC"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 16,
+          "name": "Ignition timing",
+          "sample": {
+            "value": "8",
+            "unit": "° BTDC"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 17,
+          "name": "Engine operating hours",
+          "sample": {
+            "value": "725",
+            "unit": "h"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 18,
+          "name": "Engine idle time",
+          "sample": {
+            "value": "51",
+            "unit": "h"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 19,
+          "name": "Engine start/stop status",
+          "sample": {
+            "value": "Running · idle",
+            "unit": "sample"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 20,
+          "name": "Engine misfire count",
+          "sample": {
+            "value": "0",
+            "unit": "count · sample"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        },
+        {
+          "id": 21,
+          "name": "Engine knocking",
+          "sample": {
+            "value": "Not detected",
+            "unit": "sample"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        },
+        {
+          "id": 22,
+          "name": "Exhaust gas temperature",
+          "sample": {
+            "value": "378",
+            "unit": "°C"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 23,
+          "name": "Exhaust pressure",
+          "sample": {
+            "value": "102",
+            "unit": "kPa"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 24,
+          "name": "Engine fault codes",
+          "sample": {
+            "value": "None",
+            "unit": "no active DTC · sample"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        },
+        {
+          "id": 25,
+          "name": "Engine operating status",
+          "sample": {
+            "value": "Idle",
+            "unit": "sample"
+          },
+          "source": "OBD-II / engine ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        }
+      ]
+    },
+    {
+      "id": "fuel-related-information",
+      "name": "Fuel",
+      "source": "OBD-II / engine ECU / fuel sensors",
+      "signals": [
+        {
+          "id": 26,
+          "name": "Fuel tank level",
+          "sample": {
+            "value": "64",
+            "unit": "%"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 27,
+          "name": "Fuel consumed",
+          "sample": {
+            "value": "5.8",
+            "unit": "L · trip"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 28,
+          "name": "Instantaneous fuel consumption",
+          "sample": {
+            "value": "6.4",
+            "unit": "L/100 km"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 29,
+          "name": "Average fuel consumption",
+          "sample": {
+            "value": "7.1",
+            "unit": "L/100 km"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 30,
+          "name": "Fuel efficiency (km/l)",
+          "sample": {
+            "value": "14.1",
+            "unit": "km/L"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 31,
+          "name": "Fuel pressure",
+          "sample": {
+            "value": "350",
+            "unit": "kPa"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 32,
+          "name": "Fuel injection rate",
+          "sample": {
+            "value": "2.6",
+            "unit": "g/s · sample"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 33,
+          "name": "Remaining driving range",
+          "sample": {
+            "value": "412",
+            "unit": "km"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 34,
+          "name": "Fuel type (where supported)",
+          "sample": {
+            "value": "Petrol",
+            "unit": "sample"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 35,
+          "name": "Fuel system status",
+          "sample": {
+            "value": "Closed loop",
+            "unit": "sample"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 36,
+          "name": "Fuel leakage indicators (with suitable detection hardware)",
+          "sample": {
+            "value": "No alert",
+            "unit": "sample"
+          },
+          "source": "OBD-II / engine ECU / fuel sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tyre-and-wheel-information",
+      "name": "Tyres & wheels",
+      "source": "TPMS / wheel-speed sensors",
+      "signals": [
+        {
+          "id": 37,
+          "name": "Individual tyre pressure",
+          "sample": {
+            "value": "34",
+            "unit": "PSI · sample wheel"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 38,
+          "name": "Tyre temperature",
+          "sample": {
+            "value": "31",
+            "unit": "°C · sample"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 39,
+          "name": "Front-left tyre pressure",
+          "sample": {
+            "value": "34",
+            "unit": "PSI"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 40,
+          "name": "Front-right tyre pressure",
+          "sample": {
+            "value": "34",
+            "unit": "PSI"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 41,
+          "name": "Rear-left tyre pressure",
+          "sample": {
+            "value": "33",
+            "unit": "PSI"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 42,
+          "name": "Rear-right tyre pressure",
+          "sample": {
+            "value": "33",
+            "unit": "PSI"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 43,
+          "name": "Wheel rotation speed",
+          "sample": {
+            "value": "0",
+            "unit": "rpm · parked"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Compare with a driver/OEM-configured limit or verified local limit; there is no universal safe-speed threshold."
+          }
+        },
+        {
+          "id": 44,
+          "name": "Wheel slip",
+          "sample": {
+            "value": "0",
+            "unit": "% · sample"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 45,
+          "name": "Tyre pressure imbalance",
+          "sample": {
+            "value": "1",
+            "unit": "PSI · max difference"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 46,
+          "name": "Tyre pressure loss",
+          "sample": {
+            "value": "0",
+            "unit": "PSI/h · sample"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 47,
+          "name": "Tyre condition indicators (with suitable additional sensors)",
+          "sample": {
+            "value": "No alert",
+            "unit": "sample"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 48,
+          "name": "Wheel alignment indicators (indirectly, with suitable measurements)",
+          "sample": {
+            "value": "No deviation inferred",
+            "unit": "sample"
+          },
+          "source": "TPMS / wheel-speed sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        }
+      ]
+    },
+    {
+      "id": "battery-and-electrical-system",
+      "name": "Battery & electrical",
+      "source": "BMS / vehicle ECU / electrical sensors",
+      "signals": [
+        {
+          "id": 49,
+          "name": "Battery voltage",
+          "sample": {
+            "value": "12.6",
+            "unit": "V · sample LV bus"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 50,
+          "name": "Battery current",
+          "sample": {
+            "value": "8.2",
+            "unit": "A"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 51,
+          "name": "Battery temperature",
+          "sample": {
+            "value": "27",
+            "unit": "°C"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 52,
+          "name": "Battery charge level",
+          "sample": {
+            "value": "86",
+            "unit": "%"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 53,
+          "name": "Battery health estimate",
+          "sample": {
+            "value": "96",
+            "unit": "% · estimated"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 54,
+          "name": "Alternator voltage",
+          "sample": {
+            "value": "13.8",
+            "unit": "V · sample"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 55,
+          "name": "Alternator performance",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "state"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 56,
+          "name": "Starter motor status",
+          "sample": {
+            "value": "Ready · sample",
+            "unit": "state"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 57,
+          "name": "Electrical system voltage",
+          "sample": {
+            "value": "13.8",
+            "unit": "V"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 58,
+          "name": "Electrical load",
+          "sample": {
+            "value": "1.4",
+            "unit": "kW"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 59,
+          "name": "Charging system status",
+          "sample": {
+            "value": "Idle · unplugged",
+            "unit": "sample"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 60,
+          "name": "Electrical fault codes",
+          "sample": {
+            "value": "None",
+            "unit": "no active DTC · sample"
+          },
+          "source": "BMS / vehicle ECU / electrical sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        }
+      ]
+    },
+    {
+      "id": "driving-behaviour",
+      "name": "Driving behaviour",
+      "source": "OBD-II / GPS / IMU",
+      "signals": [
+        {
+          "id": 61,
+          "name": "Current speed",
+          "sample": {
+            "value": "0",
+            "unit": "km/h"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Compare with a driver/OEM-configured limit or verified local limit; there is no universal safe-speed threshold."
+          }
+        },
+        {
+          "id": 62,
+          "name": "Average speed",
+          "sample": {
+            "value": "38",
+            "unit": "km/h · trip"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Compare with a driver/OEM-configured limit or verified local limit; there is no universal safe-speed threshold."
+          }
+        },
+        {
+          "id": 63,
+          "name": "Maximum speed",
+          "sample": {
+            "value": "86",
+            "unit": "km/h · trip"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Compare with a driver/OEM-configured limit or verified local limit; there is no universal safe-speed threshold."
+          }
+        },
+        {
+          "id": 64,
+          "name": "Acceleration",
+          "sample": {
+            "value": "0.0",
+            "unit": "m/s²"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 65,
+          "name": "Deceleration",
+          "sample": {
+            "value": "0.0",
+            "unit": "m/s²"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 66,
+          "name": "Sudden acceleration",
+          "sample": {
+            "value": "None",
+            "unit": "sample trip events"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 67,
+          "name": "Sudden braking",
+          "sample": {
+            "value": "None",
+            "unit": "sample trip events"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 68,
+          "name": "Harsh braking frequency",
+          "sample": {
+            "value": "0",
+            "unit": "events · sample trip"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 69,
+          "name": "Sharp cornering",
+          "sample": {
+            "value": "None",
+            "unit": "sample trip events"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 70,
+          "name": "Steering angle",
+          "sample": {
+            "value": "0",
+            "unit": "°"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 71,
+          "name": "Steering rate",
+          "sample": {
+            "value": "0",
+            "unit": "°/s"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 72,
+          "name": "Gear position",
+          "sample": {
+            "value": "P",
+            "unit": "sample · parked"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 73,
+          "name": "Gear shifting frequency",
+          "sample": {
+            "value": "6",
+            "unit": "shifts · sample trip"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 74,
+          "name": "Clutch status (where supported)",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "simulated state"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 75,
+          "name": "Brake pedal position",
+          "sample": {
+            "value": "0",
+            "unit": "%"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 76,
+          "name": "Accelerator pedal position",
+          "sample": {
+            "value": "0",
+            "unit": "%"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 77,
+          "name": "Handbrake status",
+          "sample": {
+            "value": "Engaged · parked",
+            "unit": "sample"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 78,
+          "name": "Distance travelled",
+          "sample": {
+            "value": "18.4",
+            "unit": "km · trip"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 79,
+          "name": "Driving duration",
+          "sample": {
+            "value": "00:42",
+            "unit": "hh:mm"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 80,
+          "name": "Idle duration",
+          "sample": {
+            "value": "00:03",
+            "unit": "hh:mm · trip"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 81,
+          "name": "Reverse gear status",
+          "sample": {
+            "value": "Off · parked",
+            "unit": "sample"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 82,
+          "name": "Cruise control status",
+          "sample": {
+            "value": "Off",
+            "unit": "sample"
+          },
+          "source": "OBD-II / GPS / IMU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        }
+      ]
+    },
+    {
+      "id": "braking-system",
+      "name": "Braking",
+      "source": "ABS / brake ECU / optional wear sensors",
+      "signals": [
+        {
+          "id": 83,
+          "name": "Brake pressure",
+          "sample": {
+            "value": "0",
+            "unit": "bar · parked"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 84,
+          "name": "Brake fluid level",
+          "sample": {
+            "value": "82",
+            "unit": "% · sample"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 85,
+          "name": "Brake fluid temperature",
+          "sample": {
+            "value": "34",
+            "unit": "°C · sample"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 86,
+          "name": "Brake pedal application",
+          "sample": {
+            "value": "Not applied · parked",
+            "unit": "sample"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 87,
+          "name": "ABS activation",
+          "sample": {
+            "value": "Not active",
+            "unit": "sample"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 88,
+          "name": "Electronic stability control activation",
+          "sample": {
+            "value": "Not active",
+            "unit": "sample"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 89,
+          "name": "Brake pad wear (if equipped)",
+          "sample": {
+            "value": "18",
+            "unit": "% · estimated remaining"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 90,
+          "name": "Brake disc temperature (with additional sensors)",
+          "sample": {
+            "value": "38",
+            "unit": "°C · sample"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 91,
+          "name": "Brake system fault status",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "state"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        },
+        {
+          "id": 92,
+          "name": "Parking brake status",
+          "sample": {
+            "value": "Engaged · parked",
+            "unit": "sample"
+          },
+          "source": "ABS / brake ECU / optional wear sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        }
+      ]
+    },
+    {
+      "id": "accident-and-impact-information",
+      "name": "Impact & accident",
+      "source": "Validated crash sensors / IMU / GPS",
+      "signals": [
+        {
+          "id": 93,
+          "name": "Collision detection",
+          "sample": {
+            "value": "No event",
+            "unit": "sample"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "critical",
+            "trigger": "Only a validated crash/airbag ECU event can trigger this. Send an OEM-supported emergency notification where available; never infer a crash from this demo or a single generic sensor."
+          }
+        },
+        {
+          "id": 94,
+          "name": "Collision impact force (estimated)",
+          "sample": {
+            "value": "0",
+            "unit": "g · sample"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "critical",
+            "trigger": "Only a validated crash/airbag ECU event can trigger this. Send an OEM-supported emergency notification where available; never infer a crash from this demo or a single generic sensor."
+          }
+        },
+        {
+          "id": 95,
+          "name": "Sudden deceleration during collision",
+          "sample": {
+            "value": "0.0",
+            "unit": "m/s² · sample"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "critical",
+            "trigger": "Only a validated crash/airbag ECU event can trigger this. Send an OEM-supported emergency notification where available; never infer a crash from this demo or a single generic sensor."
+          }
+        },
+        {
+          "id": 96,
+          "name": "Impact direction",
+          "sample": {
+            "value": "None",
+            "unit": "no event"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "critical",
+            "trigger": "Only a validated crash/airbag ECU event can trigger this. Send an OEM-supported emergency notification where available; never infer a crash from this demo or a single generic sensor."
+          }
+        },
+        {
+          "id": 97,
+          "name": "Vehicle rollover detection",
+          "sample": {
+            "value": "No event",
+            "unit": "sample"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "critical",
+            "trigger": "Only a validated crash/airbag ECU event can trigger this. Send an OEM-supported emergency notification where available; never infer a crash from this demo or a single generic sensor."
+          }
+        },
+        {
+          "id": 98,
+          "name": "Airbag deployment status",
+          "sample": {
+            "value": "Not deployed",
+            "unit": "sample"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "critical",
+            "trigger": "Only a validated crash/airbag ECU event can trigger this. Send an OEM-supported emergency notification where available; never infer a crash from this demo or a single generic sensor."
+          }
+        },
+        {
+          "id": 99,
+          "name": "Crash sensor activation",
+          "sample": {
+            "value": "Not active",
+            "unit": "sample"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "critical",
+            "trigger": "Only a validated crash/airbag ECU event can trigger this. Send an OEM-supported emergency notification where available; never infer a crash from this demo or a single generic sensor."
+          }
+        },
+        {
+          "id": 100,
+          "name": "Vehicle tilt angle",
+          "sample": {
+            "value": "0",
+            "unit": "° · parked"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 101,
+          "name": "Accident timestamp",
+          "sample": {
+            "value": "—",
+            "unit": "no event"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 102,
+          "name": "Accident location",
+          "sample": {
+            "value": "—",
+            "unit": "no event"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 103,
+          "name": "Post-collision vehicle status",
+          "sample": {
+            "value": "Normal · no event",
+            "unit": "sample"
+          },
+          "source": "Validated crash sensors / IMU / GPS",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "critical",
+            "trigger": "Only a validated crash/airbag ECU event can trigger this. Send an OEM-supported emergency notification where available; never infer a crash from this demo or a single generic sensor."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gps-and-location-information",
+      "name": "GPS & location",
+      "source": "GNSS / navigation ECU",
+      "signals": [
+        {
+          "id": 104,
+          "name": "Current geographical location",
+          "sample": {
+            "value": "12.9716, 77.5946",
+            "unit": "° · simulated"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 105,
+          "name": "Latitude",
+          "sample": {
+            "value": "12.9716",
+            "unit": "° · simulated"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 106,
+          "name": "Longitude",
+          "sample": {
+            "value": "77.5946",
+            "unit": "° · simulated"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 107,
+          "name": "Altitude",
+          "sample": {
+            "value": "920",
+            "unit": "m · simulated"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 108,
+          "name": "Current route",
+          "sample": {
+            "value": "Home → Sample hub",
+            "unit": "demo route"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 109,
+          "name": "Total distance travelled",
+          "sample": {
+            "value": "18.4",
+            "unit": "km · trip"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 110,
+          "name": "Travel direction",
+          "sample": {
+            "value": "North",
+            "unit": "sample"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 111,
+          "name": "Vehicle heading",
+          "sample": {
+            "value": "0",
+            "unit": "° · sample"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 112,
+          "name": "Average journey time",
+          "sample": {
+            "value": "00:42",
+            "unit": "hh:mm · sample"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 113,
+          "name": "Stoppage locations",
+          "sample": {
+            "value": "None",
+            "unit": "sample trip"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Alert only when a user-configured route/geofence or stop-duration rule is crossed and location permission is enabled. Respect consent and privacy."
+          }
+        },
+        {
+          "id": 114,
+          "name": "Parking location",
+          "sample": {
+            "value": "—",
+            "unit": "not parked at saved place"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Alert only when a user-configured route/geofence or stop-duration rule is crossed and location permission is enabled. Respect consent and privacy."
+          }
+        },
+        {
+          "id": 115,
+          "name": "Geofencing entry/exit",
+          "sample": {
+            "value": "No crossing",
+            "unit": "sample"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Alert only when a user-configured route/geofence or stop-duration rule is crossed and location permission is enabled. Respect consent and privacy."
+          }
+        },
+        {
+          "id": 116,
+          "name": "Route deviation",
+          "sample": {
+            "value": "None",
+            "unit": "sample route"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Alert only when a user-configured route/geofence or stop-duration rule is crossed and location permission is enabled. Respect consent and privacy."
+          }
+        },
+        {
+          "id": 117,
+          "name": "Time spent at each location",
+          "sample": {
+            "value": "00:00",
+            "unit": "hh:mm · sample"
+          },
+          "source": "GNSS / navigation ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Alert only when a user-configured route/geofence or stop-duration rule is crossed and location permission is enabled. Respect consent and privacy."
+          }
+        }
+      ]
+    },
+    {
+      "id": "external-environment-information",
+      "name": "Environment",
+      "source": "Vehicle / ambient / optional IoT sensors",
+      "signals": [
+        {
+          "id": 118,
+          "name": "Outside temperature",
+          "sample": {
+            "value": "28",
+            "unit": "°C · simulated"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 119,
+          "name": "Humidity",
+          "sample": {
+            "value": "48",
+            "unit": "% · simulated"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 120,
+          "name": "Atmospheric pressure",
+          "sample": {
+            "value": "101.2",
+            "unit": "kPa · simulated"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 121,
+          "name": "Rain detection",
+          "sample": {
+            "value": "No rain",
+            "unit": "sample"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 122,
+          "name": "Light intensity",
+          "sample": {
+            "value": "420",
+            "unit": "lux · simulated"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 123,
+          "name": "Air quality",
+          "sample": {
+            "value": "Good",
+            "unit": "sample"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 124,
+          "name": "Road surface temperature",
+          "sample": {
+            "value": "29",
+            "unit": "°C · simulated"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 125,
+          "name": "Water depth (with appropriate sensors)",
+          "sample": {
+            "value": "0",
+            "unit": "mm · sample"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 126,
+          "name": "Visibility conditions (using cameras or other sensors)",
+          "sample": {
+            "value": "Clear",
+            "unit": "sample"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 127,
+          "name": "Wind speed (with additional equipment)",
+          "sample": {
+            "value": "8",
+            "unit": "km/h · simulated"
+          },
+          "source": "Vehicle / ambient / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Compare with a driver/OEM-configured limit or verified local limit; there is no universal safe-speed threshold."
+          }
+        }
+      ]
+    },
+    {
+      "id": "surrounding-vehicle-and-obstacle-information",
+      "name": "Surroundings & ADAS",
+      "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+      "signals": [
+        {
+          "id": 128,
+          "name": "Distance from the vehicle ahead",
+          "sample": {
+            "value": "42",
+            "unit": "m · simulated"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 129,
+          "name": "Distance from vehicles behind",
+          "sample": {
+            "value": "18",
+            "unit": "m · simulated"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 130,
+          "name": "Distance from vehicles on either side",
+          "sample": {
+            "value": "2.4",
+            "unit": "m · simulated"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 131,
+          "name": "Relative speed of nearby vehicles",
+          "sample": {
+            "value": "0",
+            "unit": "km/h · sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Compare with a driver/OEM-configured limit or verified local limit; there is no universal safe-speed threshold."
+          }
+        },
+        {
+          "id": 132,
+          "name": "Obstacle distance",
+          "sample": {
+            "value": "4.2",
+            "unit": "m · simulated"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 133,
+          "name": "Obstacle direction",
+          "sample": {
+            "value": "None",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 134,
+          "name": "Blind-spot occupancy",
+          "sample": {
+            "value": "Not occupied",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 135,
+          "name": "Parking distance",
+          "sample": {
+            "value": "1.4",
+            "unit": "m · simulated"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 136,
+          "name": "Pedestrian detection",
+          "sample": {
+            "value": "None",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 137,
+          "name": "Cyclist detection",
+          "sample": {
+            "value": "None",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 138,
+          "name": "Lane markings",
+          "sample": {
+            "value": "Detected",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 139,
+          "name": "Lane departure",
+          "sample": {
+            "value": "None",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert only when the validated subsystem reports this event and its OEM threshold/conditions are satisfied. The signal may be advisory rather than a fault."
+          }
+        },
+        {
+          "id": 140,
+          "name": "Lane change detection",
+          "sample": {
+            "value": "None",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 141,
+          "name": "Traffic sign recognition",
+          "sample": {
+            "value": "60 km/h · sample",
+            "unit": "simulated sign"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 142,
+          "name": "Traffic signal recognition",
+          "sample": {
+            "value": "Green · sample",
+            "unit": "simulated signal"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 143,
+          "name": "Road curvature",
+          "sample": {
+            "value": "Low · sample",
+            "unit": "estimated"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 144,
+          "name": "Road boundary detection",
+          "sample": {
+            "value": "Detected",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 145,
+          "name": "Road obstacle detection",
+          "sample": {
+            "value": "None",
+            "unit": "sample"
+          },
+          "source": "Validated cameras / radar / ultrasonic / ADAS ECU",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        }
+      ]
+    },
+    {
+      "id": "driver-and-passenger-information",
+      "name": "People & cabin safety",
+      "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+      "signals": [
+        {
+          "id": 146,
+          "name": "Driver seat occupancy",
+          "sample": {
+            "value": "Occupied",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the vehicle-approved seat/door/seatbelt state and OEM policy; e.g. an unbelted occupied seat or door ajar while moving. Do not infer occupant identity."
+          }
+        },
+        {
+          "id": 147,
+          "name": "Passenger seat occupancy",
+          "sample": {
+            "value": "Unoccupied",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the vehicle-approved seat/door/seatbelt state and OEM policy; e.g. an unbelted occupied seat or door ajar while moving. Do not infer occupant identity."
+          }
+        },
+        {
+          "id": 148,
+          "name": "Seatbelt usage",
+          "sample": {
+            "value": "Driver buckled",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the vehicle-approved seat/door/seatbelt state and OEM policy; e.g. an unbelted occupied seat or door ajar while moving. Do not infer occupant identity."
+          }
+        },
+        {
+          "id": 149,
+          "name": "Driver drowsiness indicators",
+          "sample": {
+            "value": "No warning",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Only a validated, calibrated driver-monitoring system may emit its own attention/fatigue warning. This field is not a diagnosis; advise a safe stop and rest when the driver feels sleepy."
+          }
+        },
+        {
+          "id": 150,
+          "name": "Driver eye movement",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "state"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Only a validated, calibrated driver-monitoring system may emit its own attention/fatigue warning. This field is not a diagnosis; advise a safe stop and rest when the driver feels sleepy."
+          }
+        },
+        {
+          "id": 151,
+          "name": "Driver head position",
+          "sample": {
+            "value": "Forward · sample",
+            "unit": "state"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Only a validated, calibrated driver-monitoring system may emit its own attention/fatigue warning. This field is not a diagnosis; advise a safe stop and rest when the driver feels sleepy."
+          }
+        },
+        {
+          "id": 152,
+          "name": "Driver distraction indicators",
+          "sample": {
+            "value": "No warning",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Only a validated, calibrated driver-monitoring system may emit its own attention/fatigue warning. This field is not a diagnosis; advise a safe stop and rest when the driver feels sleepy."
+          }
+        },
+        {
+          "id": 153,
+          "name": "Steering wheel grip (if equipped)",
+          "sample": {
+            "value": "Detected",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Only a validated, calibrated driver-monitoring system may emit its own attention/fatigue warning. This field is not a diagnosis; advise a safe stop and rest when the driver feels sleepy."
+          }
+        },
+        {
+          "id": 154,
+          "name": "Number of occupants",
+          "sample": {
+            "value": "1",
+            "unit": "count · sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 155,
+          "name": "Door open/close status",
+          "sample": {
+            "value": "All closed",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the vehicle-approved seat/door/seatbelt state and OEM policy; e.g. an unbelted occupied seat or door ajar while moving. Do not infer occupant identity."
+          }
+        },
+        {
+          "id": 156,
+          "name": "Window open/close status",
+          "sample": {
+            "value": "All closed",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the vehicle-approved seat/door/seatbelt state and OEM policy; e.g. an unbelted occupied seat or door ajar while moving. Do not infer occupant identity."
+          }
+        },
+        {
+          "id": 157,
+          "name": "Child seat occupancy (if equipped)",
+          "sample": {
+            "value": "Not detected",
+            "unit": "sample"
+          },
+          "source": "Seat sensors / seatbelt switches / validated driver-monitoring hardware",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the vehicle-approved seat/door/seatbelt state and OEM policy; e.g. an unbelted occupied seat or door ajar while moving. Do not infer occupant identity."
+          }
+        }
+      ]
+    },
+    {
+      "id": "transmission-and-drivetrain",
+      "name": "Transmission",
+      "source": "Transmission ECU / drivetrain sensors",
+      "signals": [
+        {
+          "id": 158,
+          "name": "Current gear",
+          "sample": {
+            "value": "P",
+            "unit": "sample · parked"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 159,
+          "name": "Transmission temperature",
+          "sample": {
+            "value": "42",
+            "unit": "°C · sample"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 160,
+          "name": "Transmission fluid pressure",
+          "sample": {
+            "value": "300",
+            "unit": "kPa · sample"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 161,
+          "name": "Transmission fluid temperature",
+          "sample": {
+            "value": "42",
+            "unit": "°C · sample"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 162,
+          "name": "Gear shift status",
+          "sample": {
+            "value": "Stable · parked",
+            "unit": "sample"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 163,
+          "name": "Clutch temperature (if equipped)",
+          "sample": {
+            "value": "35",
+            "unit": "°C · sample"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 164,
+          "name": "Clutch engagement status",
+          "sample": {
+            "value": "Not engaged · parked",
+            "unit": "sample"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 165,
+          "name": "Differential temperature (if equipped)",
+          "sample": {
+            "value": "38",
+            "unit": "°C · sample"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 166,
+          "name": "Driveshaft speed",
+          "sample": {
+            "value": "0",
+            "unit": "rpm · parked"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "info",
+            "trigger": "Compare with a driver/OEM-configured limit or verified local limit; there is no universal safe-speed threshold."
+          }
+        },
+        {
+          "id": 167,
+          "name": "Torque distribution",
+          "sample": {
+            "value": "Front 100 · rear 0",
+            "unit": "% · sample"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 168,
+          "name": "Four-wheel-drive status",
+          "sample": {
+            "value": "Off · sample",
+            "unit": "state"
+          },
+          "source": "Transmission ECU / drivetrain sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        }
+      ]
+    },
+    {
+      "id": "exhaust-and-emission-information",
+      "name": "Emissions",
+      "source": "OBD-II / after-treatment sensors",
+      "signals": [
+        {
+          "id": 169,
+          "name": "Oxygen sensor readings",
+          "sample": {
+            "value": "0.45",
+            "unit": "V · sample"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 170,
+          "name": "Exhaust oxygen concentration",
+          "sample": {
+            "value": "2.1",
+            "unit": "% · sample"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 171,
+          "name": "Air-fuel ratio",
+          "sample": {
+            "value": "14.7:1",
+            "unit": "sample"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 172,
+          "name": "Carbon monoxide concentration (with suitable equipment)",
+          "sample": {
+            "value": "0",
+            "unit": "ppm · sample"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 173,
+          "name": "Nitrogen oxide levels (with suitable equipment)",
+          "sample": {
+            "value": "12",
+            "unit": "ppm · sample"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 174,
+          "name": "Exhaust gas temperature",
+          "sample": {
+            "value": "378",
+            "unit": "°C"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 175,
+          "name": "Exhaust pressure",
+          "sample": {
+            "value": "102",
+            "unit": "kPa"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 176,
+          "name": "Catalytic converter temperature",
+          "sample": {
+            "value": "410",
+            "unit": "°C · sample"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 177,
+          "name": "Catalytic converter efficiency",
+          "sample": {
+            "value": "98",
+            "unit": "% · estimated"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 178,
+          "name": "Diesel particulate filter status",
+          "sample": {
+            "value": "Not applicable · petrol sample",
+            "unit": "state"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 179,
+          "name": "DPF soot loading",
+          "sample": {
+            "value": "Not applicable · petrol sample",
+            "unit": "%"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 180,
+          "name": "EGR system status",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "state"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 181,
+          "name": "Emission system fault codes",
+          "sample": {
+            "value": "None",
+            "unit": "no active DTC · sample"
+          },
+          "source": "OBD-II / after-treatment sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vehicle-condition-and-maintenance",
+      "name": "Maintenance",
+      "source": "OBD-II / vehicle ECU / optional component sensors",
+      "signals": [
+        {
+          "id": 182,
+          "name": "Odometer reading",
+          "sample": {
+            "value": "24,810",
+            "unit": "km · simulated"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 183,
+          "name": "Service interval",
+          "sample": {
+            "value": "3",
+            "unit": "count / sample"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 184,
+          "name": "Maintenance reminder status",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "simulated state"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 185,
+          "name": "Engine fault codes",
+          "sample": {
+            "value": "None",
+            "unit": "no active DTC · sample"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        },
+        {
+          "id": 186,
+          "name": "Transmission fault codes",
+          "sample": {
+            "value": "None",
+            "unit": "no active DTC · sample"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        },
+        {
+          "id": 187,
+          "name": "ABS fault codes",
+          "sample": {
+            "value": "None",
+            "unit": "no active DTC · sample"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        },
+        {
+          "id": 188,
+          "name": "Sensor malfunction indicators",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "simulated state"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Alert when the vehicle ECU reports an active diagnostic code, abnormal misfire/knock, or validated leak signal. Read the vehicle DTC and service guidance; this sample has no active fault."
+          }
+        },
+        {
+          "id": 189,
+          "name": "Component operating hours",
+          "sample": {
+            "value": "0",
+            "unit": "count / sample"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 190,
+          "name": "Coolant level (if equipped)",
+          "sample": {
+            "value": "70",
+            "unit": "%"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 191,
+          "name": "Washer fluid level (if equipped)",
+          "sample": {
+            "value": "71",
+            "unit": "%"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 192,
+          "name": "Brake fluid level",
+          "sample": {
+            "value": "82",
+            "unit": "% · sample"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 193,
+          "name": "Door lock status",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "simulated state"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 194,
+          "name": "Hood open/close status",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "simulated state"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 195,
+          "name": "Trunk open/close status",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "simulated state"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 196,
+          "name": "Suspension height",
+          "sample": {
+            "value": "11",
+            "unit": "m · sample"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 197,
+          "name": "Suspension pressure (if equipped)",
+          "sample": {
+            "value": "105",
+            "unit": "kPa · sample"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 198,
+          "name": "Shock absorber performance (with suitable monitoring)",
+          "sample": {
+            "value": "Normal · sample",
+            "unit": "simulated state"
+          },
+          "source": "OBD-II / vehicle ECU / optional component sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cabin-and-comfort-information",
+      "name": "Cabin & comfort",
+      "source": "HVAC / cabin sensors / optional IoT sensors",
+      "signals": [
+        {
+          "id": 199,
+          "name": "Cabin temperature",
+          "sample": {
+            "value": "22.5",
+            "unit": "°C"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 200,
+          "name": "Cabin humidity",
+          "sample": {
+            "value": "44",
+            "unit": "%"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 201,
+          "name": "AC temperature",
+          "sample": {
+            "value": "19",
+            "unit": "°C · setpoint"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 202,
+          "name": "AC compressor status",
+          "sample": {
+            "value": "On · sample",
+            "unit": "state"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 203,
+          "name": "Air conditioning pressure",
+          "sample": {
+            "value": "850",
+            "unit": "kPa · sample"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 204,
+          "name": "Cabin air quality",
+          "sample": {
+            "value": "Good · sample",
+            "unit": "state"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 205,
+          "name": "CO₂ concentration (with additional sensors)",
+          "sample": {
+            "value": "720",
+            "unit": "ppm · simulated"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the make/model/year-specific OEM warning threshold, diagnostic state, and trend. No universal threshold is applied in this sample."
+          }
+        },
+        {
+          "id": 206,
+          "name": "Cabin particulate matter (with additional sensors)",
+          "sample": {
+            "value": "8",
+            "unit": "µg/m³ · simulated"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Optional or model-specific hardware; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 207,
+          "name": "Window status",
+          "sample": {
+            "value": "All closed · sample",
+            "unit": "state"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 208,
+          "name": "Sunroof status",
+          "sample": {
+            "value": "Closed · sample",
+            "unit": "state"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        },
+        {
+          "id": 209,
+          "name": "Seat temperature",
+          "sample": {
+            "value": "22",
+            "unit": "°C · sample"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the vehicle-approved seat/door/seatbelt state and OEM policy; e.g. an unbelted occupied seat or door ajar while moving. Do not infer occupant identity."
+          }
+        },
+        {
+          "id": 210,
+          "name": "Seat occupancy",
+          "sample": {
+            "value": "Driver occupied · sample",
+            "unit": "state"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": true,
+            "severity": "warning",
+            "trigger": "Use the vehicle-approved seat/door/seatbelt state and OEM policy; e.g. an unbelted occupied seat or door ajar while moving. Do not infer occupant identity."
+          }
+        },
+        {
+          "id": 211,
+          "name": "Interior light status",
+          "sample": {
+            "value": "Auto · sample",
+            "unit": "state"
+          },
+          "source": "HVAC / cabin sensors / optional IoT sensors",
+          "availability": "Availability and encoding vary by make, model, year, ECU, and market; sample value is synthetic.",
+          "alertRule": {
+            "alertable": false,
+            "severity": "info",
+            "trigger": "Context/status value. No standalone alert is defined; raise an alert only when an OEM rule or related validated signal requires it."
+          }
+        }
+      ]
+    }
+  ],
+  "collectionMethods": [
+    {
+      "name": "OBD-II",
+      "provides": "Engine, fuel, speed, emissions, diagnostic trouble codes",
+      "caveat": "Vehicle protocol and supported PID coverage vary."
+    },
+    {
+      "name": "GPS / GNSS",
+      "provides": "Location, route, heading, altitude, and some speed estimates",
+      "caveat": "Requires permission and a location receiver; indoor/urban readings can be inaccurate."
+    },
+    {
+      "name": "IMU",
+      "provides": "Acceleration, rotation, sudden impact estimates",
+      "caveat": "A generic IMU alone cannot reliably confirm a crash or occupant injury."
+    },
+    {
+      "name": "TPMS",
+      "provides": "Per-wheel pressure and sometimes temperature",
+      "caveat": "Sensor coverage and thresholds are vehicle-specific; TPMS does not replace regular checks."
+    },
+    {
+      "name": "Camera / driver-monitoring system",
+      "provides": "Lane, obstacle, sign, and driver-attention signals",
+      "caveat": "Needs validated, calibrated hardware and OEM-approved safety logic."
+    },
+    {
+      "name": "Radar / ultrasonic",
+      "provides": "Relative distance, blind spot, and parking proximity",
+      "caveat": "Coverage and alert semantics depend on vehicle hardware and calibration."
+    },
+    {
+      "name": "Additional IoT sensors",
+      "provides": "Cabin air, environment, water depth, and component condition",
+      "caveat": "Only available when the corresponding sensor is installed and calibrated."
+    }
+  ]
+}

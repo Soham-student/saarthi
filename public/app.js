@@ -1,28 +1,22 @@
-const micButton = document.querySelector('#micButton');
-const micLabel = document.querySelector('#micLabel');
-const assistantPanel = document.querySelector('#assistantPanel');
-const voiceState = document.querySelector('#voiceState');
-const voiceHint = document.querySelector('#voiceHint');
-const recordingTime = document.querySelector('#recordingTime');
-const inputQuality = document.querySelector('#inputQuality');
-const vadLabel = document.querySelector('#vadLabel');
-const waveform = document.querySelector('#waveform');
-const conversation = document.querySelector('#conversation');
-const transcriptText = document.querySelector('#transcriptText');
-const answerText = document.querySelector('#answerText');
-const detectedLanguage = document.querySelector('#detectedLanguage');
-const replyLanguage = document.querySelector('#replyLanguage');
-const confidenceValue = document.querySelector('#confidenceValue');
-const confidenceBar = document.querySelector('#confidenceBar');
-const answerAudio = document.querySelector('#answerAudio');
-const speedSlider = document.querySelector('#speedSlider');
-const speedValue = document.querySelector('#speedValue');
-const alertList = document.querySelector('#alertList');
-const tirePanel = document.querySelector('#tirePanel');
-const tireAlert = document.querySelector('#tireAlert');
-const videoApp = document.querySelector('#youtubeVideoButton');
-const videoAppState = document.querySelector('#videoAppState');
-const videoNotice = document.querySelector('#videoNotice');
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const micButton = $('#micButton');
+const micLabel = $('#micLabel');
+const voiceState = $('#voiceState');
+const voiceHint = $('#voiceHint');
+const recordingTime = $('#recordingTime');
+const waveform = $('#waveform');
+const conversation = $('#conversation');
+const transcriptText = $('#transcriptText');
+const answerText = $('#answerText');
+const detectedLanguage = $('#detectedLanguage');
+const replyLanguage = $('#replyLanguage');
+const confidenceValue = $('#confidenceValue');
+const confidenceBar = $('#confidenceBar');
+const answerAudio = $('#answerAudio');
+const speedSlider = $('#speedSlider');
+const videoButton = $('#youtubeVideoButton');
+const assistantLanguage = $('#assistantLanguage');
 const MAX_RECORDING_MS = 20_000;
 const NO_SPEECH_TIMEOUT_MS = 8_000;
 const SILENCE_TIMEOUT_MS = 1_350;
@@ -45,7 +39,7 @@ let pendingDiscard = false;
 let conversationHistory = [];
 let simulatedSpeed = 0;
 let speedAlertActive = false;
-let simulatedTirePressure = { FL: 34, FR: 34, RL: 33, RR: 33 };
+let catalog = null;
 let demoAlerts = [];
 let alertAudio;
 let alertRequestNumber = 0;
@@ -63,12 +57,12 @@ const waveformBars = [...waveform.children];
 function updateStatus(title, detail = '', mode = 'idle') {
   voiceState.textContent = title;
   voiceHint.textContent = detail;
-  assistantPanel.classList.toggle('processing', mode === 'processing');
-  assistantPanel.classList.toggle('error', mode === 'error');
+  $('#voiceCard').classList.toggle('processing', mode === 'processing');
+  $('#voiceCard').classList.toggle('error', mode === 'error');
 }
 
 function showToast(title, message, severity = 'info') {
-  let toast = document.querySelector('.alert-toast');
+  let toast = $('.alert-toast');
   if (!toast) {
     toast = document.createElement('div');
     toast.className = 'alert-toast';
@@ -77,7 +71,7 @@ function showToast(title, message, severity = 'info') {
     document.body.append(toast);
   }
   toast.className = `alert-toast ${severity}`;
-  toast.innerHTML = '';
+  toast.replaceChildren();
   const heading = document.createElement('b');
   const content = document.createElement('span');
   heading.textContent = title;
@@ -93,7 +87,7 @@ function localVoiceFallback(text, severity) {
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = 'en-IN';
   utterance.rate = severity === 'critical' ? 0.98 : 1;
-  utterance.volume = Number(document.querySelector('#volumeSlider').value) / 100;
+  utterance.volume = Number($('#volumeSlider').value) / 100;
   window.speechSynthesis.speak(utterance);
 }
 
@@ -112,7 +106,6 @@ async function speakAlert(text, severity = 'warning') {
       localVoiceFallback(text, severity);
     }
   }, fallbackDelay);
-
   try {
     const response = await fetch('/api/alert-audio', {
       method: 'POST',
@@ -124,7 +117,7 @@ async function speakAlert(text, severity = 'warning') {
     if (!response.ok || !result.audio || requestNumber !== alertRequestNumber || spoken) return;
     clearTimeout(fallbackTimer);
     alertAudio = new Audio(result.audio);
-    alertAudio.volume = Number(document.querySelector('#volumeSlider').value) / 100;
+    alertAudio.volume = Number($('#volumeSlider').value) / 100;
     try {
       await alertAudio.play();
       spoken = true;
@@ -143,81 +136,223 @@ async function speakAlert(text, severity = 'warning') {
   }
 }
 
+function alertNode(alert) {
+  const item = document.createElement('article');
+  item.className = `alert-item ${alert.severity}`;
+  const mark = document.createElement('span');
+  mark.className = 'alert-mark';
+  mark.textContent = alert.severity === 'critical' ? '!' : alert.severity === 'warning' ? '⚠' : 'i';
+  const body = document.createElement('span');
+  body.className = 'alert-content';
+  const title = document.createElement('b');
+  const description = document.createElement('small');
+  title.textContent = alert.title;
+  description.textContent = alert.message;
+  body.append(title, description);
+  const time = document.createElement('time');
+  time.className = 'alert-time';
+  time.textContent = alert.time;
+  item.append(mark, body, time);
+  return item;
+}
+
 function renderAlerts() {
-  alertList.replaceChildren();
+  const recent = $('#recentAlerts');
+  const feed = $('#alertFeed');
+  recent.replaceChildren();
+  feed.replaceChildren();
+  $('#alertCount').textContent = String(demoAlerts.length);
   if (!demoAlerts.length) {
     const empty = document.createElement('div');
     empty.className = 'empty-alert';
-    empty.innerHTML = '<span>✓</span><div><b>No active demo alerts</b><small>Simulate a vehicle signal below to preview spoken alerts.</small></div>';
-    alertList.append(empty);
+    empty.textContent = 'No simulated alerts yet. Choose one in Alert simulator.';
+    recent.append(empty.cloneNode(true));
+    feed.append(empty);
     return;
   }
-  demoAlerts.slice(0, 5).forEach((alert) => {
-    const item = document.createElement('div');
-    item.className = `alert-item ${alert.severity}`;
-    const mark = document.createElement('span');
-    mark.className = 'alert-mark';
-    mark.textContent = alert.severity === 'critical' ? '!' : alert.severity === 'warning' ? '⚠' : 'i';
-    const body = document.createElement('span');
-    body.className = 'alert-content';
-    const title = document.createElement('b');
-    const description = document.createElement('small');
-    title.textContent = alert.title;
-    description.textContent = alert.message;
-    body.append(title, description);
-    const time = document.createElement('span');
-    time.className = 'alert-time';
-    time.textContent = alert.time;
-    item.append(mark, body, time);
-    alertList.append(item);
-  });
+  demoAlerts.slice(0, 4).forEach((alert) => recent.append(alertNode(alert)));
+  demoAlerts.forEach((alert) => feed.append(alertNode(alert)));
 }
 
-function triggerAlert(title, message, severity = 'warning') {
+function triggerAlert(title, message, severity = 'warning', shouldSpeak = true) {
   const timestamp = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit' }).format(new Date());
   demoAlerts.unshift({ title, message, severity, time: timestamp });
-  demoAlerts = demoAlerts.slice(0, 8);
+  demoAlerts = demoAlerts.slice(0, 20);
   renderAlerts();
   showToast(title, message, severity);
-  speakAlert(message, severity);
+  if (shouldSpeak) speakAlert(message, severity);
 }
 
 function updateSpeed(speed) {
   const previous = simulatedSpeed;
   simulatedSpeed = Number(speed);
-  speedValue.textContent = String(simulatedSpeed);
+  $('#speedValue').textContent = String(simulatedSpeed);
+  $('#speedReadout').textContent = String(simulatedSpeed);
+  $('.gear-badge').textContent = simulatedSpeed > 0 ? 'D' : 'P';
+  $('#driveHeading').dataset.status = simulatedSpeed > 0 ? 'moving' : 'parked';
+  $('.eyebrow i').title = simulatedSpeed > 0 ? 'Simulated movement' : 'Simulated parked state';
+  $('.speed-arc').style.setProperty('--speed-progress', `${Math.min(100, simulatedSpeed / 120 * 100)}%`);
   const moving = simulatedSpeed > 0;
-  videoApp.classList.toggle('locked', moving);
-  videoApp.disabled = moving;
-  videoAppState.textContent = moving ? 'LOCKED WHILE MOVING' : 'PARKED ONLY';
-  videoNotice.textContent = moving
-    ? 'Vehicle moving in demo: video is locked. Audio apps and voice controls stay available.'
-    : 'Video content is parked-only. Connect an approved app to play actual media.';
+  videoButton.classList.toggle('locked', moving);
+  videoButton.disabled = moving;
+  $('#videoAppState').textContent = moving ? 'Locked while simulated speed is above 0' : 'Parked-only placeholder';
+  $('#videoLock').textContent = moving ? 'LOCKED' : 'PARKED ONLY';
+  $('#videoShortcut').disabled = moving;
+  $('#videoShortcut').classList.toggle('locked', moving);
   if (!speedAlertActive && previous < 90 && simulatedSpeed >= 90) {
     speedAlertActive = true;
-    triggerAlert('Speed threshold reached · demo', 'Demo speed alert. Speed crossed the configured 90 kilometer-per-hour threshold. Keep attention on the road.', 'warning');
+    triggerAlert('Speed threshold reached · demo', 'Demo speed alert. The simulated speed crossed the configured 90 kilometer-per-hour threshold. Keep attention on the road.', 'warning');
   } else if (simulatedSpeed < 80) {
     speedAlertActive = false;
   }
 }
 
-function setTirePressure(position, pressure) {
-  simulatedTirePressure[position] = pressure;
-  document.querySelector(`#pressure-${position}`).textContent = String(pressure);
-  const wheel = document.querySelector(`[data-wheel="${position}"]`);
-  wheel.classList.toggle('low', pressure < 29);
-  const lowPosition = Object.entries(simulatedTirePressure).find(([, value]) => value < 29)?.[0];
-  if (lowPosition) {
-    tirePanel.classList.add('has-tire-alert');
-    tireAlert.hidden = false;
-    const tireNames = { FL: 'front left', FR: 'front right', RL: 'rear left', RR: 'rear right' };
-    document.querySelector('#tireAlertText').textContent = `${tireNames[lowPosition]} is ${simulatedTirePressure[lowPosition]} PSI in the demo. Check your vehicle placard and tire when safely parked.`;
-    document.querySelector('.tire-normal').innerHTML = '<i></i> LOW PRESSURE SIMULATED';
-  } else {
-    tirePanel.classList.remove('has-tire-alert');
-    tireAlert.hidden = true;
-    document.querySelector('.tire-normal').innerHTML = '<i></i> DEMO VALUES NORMAL';
+function renderCatalog() {
+  const filter = $('#categoryFilter');
+  const selector = $('#alertSignalSelect');
+  filter.replaceChildren(new Option('All groups', 'all'));
+  selector.replaceChildren(new Option('Choose an alertable signal…', ''));
+  let total = 0;
+  for (const category of catalog.categories) {
+    total += category.signals.length;
+    filter.add(new Option(category.name, category.id));
+    const group = document.createElement('optgroup');
+    group.label = category.name;
+    category.signals.filter((signal) => signal.alertRule.alertable).forEach((signal) => {
+      group.append(new Option(`${signal.name} · ${signal.alertRule.severity}`, String(signal.id)));
+    });
+    if (group.children.length) selector.append(group);
   }
+  $('#catalogCount').textContent = String(total);
+  $('#categoryCount').textContent = String(catalog.categories.length);
+  renderSensors();
+  renderSources();
+  renderSelectedRule();
+}
+
+function renderSensors() {
+  const container = $('#sensorList');
+  const search = $('#sensorSearch').value.trim().toLowerCase();
+  const groupId = $('#categoryFilter').value;
+  container.replaceChildren();
+  let shown = 0;
+  for (const category of catalog.categories) {
+    if (groupId !== 'all' && groupId !== category.id) continue;
+    const signals = category.signals.filter((signal) => !search || `${signal.name} ${signal.source} ${signal.alertRule.trigger}`.toLowerCase().includes(search));
+    if (!signals.length) continue;
+    shown += signals.length;
+    const section = document.createElement('details');
+    section.className = 'sensor-group';
+    section.open = Boolean(search || groupId !== 'all');
+    const summary = document.createElement('summary');
+    const title = document.createElement('b');
+    const count = document.createElement('span');
+    const source = document.createElement('small');
+    title.textContent = category.name;
+    count.textContent = `${signals.length} signals`;
+    source.textContent = category.source;
+    summary.append(title, count, source);
+    section.append(summary);
+    const grid = document.createElement('div');
+    grid.className = 'sensor-grid';
+    signals.forEach((signal) => {
+      const card = document.createElement('article');
+      card.className = 'sensor-row';
+      const top = document.createElement('div');
+      top.className = 'sensor-top';
+      const name = document.createElement('b');
+      const value = document.createElement('strong');
+      name.textContent = signal.name;
+      value.textContent = `${signal.sample.value} ${signal.sample.unit}`;
+      top.append(name, value);
+      const tag = document.createElement('span');
+      tag.className = `sensor-rule ${signal.alertRule.alertable ? signal.alertRule.severity : 'info'}`;
+      tag.textContent = signal.alertRule.alertable ? `${signal.alertRule.severity} rule available` : 'No standalone alert';
+      const explanation = document.createElement('p');
+      explanation.textContent = signal.alertRule.trigger;
+      const meta = document.createElement('small');
+      meta.textContent = `${signal.source} · ${signal.availability}`;
+      card.append(top, tag, explanation, meta);
+      grid.append(card);
+    });
+    section.append(grid);
+    container.append(section);
+  }
+  $('#resultCount').textContent = `${shown} of ${catalog.count} signals`;
+  if (!shown) {
+    const empty = document.createElement('p');
+    empty.className = 'empty-alert';
+    empty.textContent = 'No vehicle data matches that search.';
+    container.append(empty);
+  }
+}
+
+function renderSources() {
+  const list = $('#sourceList');
+  list.replaceChildren();
+  catalog.collectionMethods.forEach((method) => {
+    const item = document.createElement('article');
+    const name = document.createElement('b');
+    const provides = document.createElement('p');
+    const caveat = document.createElement('small');
+    name.textContent = method.name;
+    provides.textContent = method.provides;
+    caveat.textContent = method.caveat;
+    item.append(name, provides, caveat);
+    list.append(item);
+  });
+}
+
+function getSelectedSignal() {
+  const selectedId = Number($('#alertSignalSelect').value);
+  return catalog?.categories.flatMap((category) => category.signals).find((signal) => signal.id === selectedId);
+}
+
+function renderSelectedRule() {
+  const box = $('#selectedRule');
+  box.replaceChildren();
+  if (!catalog) return;
+  const signal = getSelectedSignal();
+  if (!signal) {
+    box.textContent = 'Select a signal to view its sample alert rule.';
+    return;
+  }
+  const severity = document.createElement('b');
+  severity.textContent = `${signal.alertRule.severity.toUpperCase()} · ${signal.name}`;
+  const rule = document.createElement('p');
+  rule.textContent = signal.alertRule.trigger;
+  const sample = document.createElement('small');
+  sample.textContent = `Sample reading: ${signal.sample.value} ${signal.sample.unit}. Simulation only.`;
+  box.append(severity, rule, sample);
+}
+
+function simulateSelectedSignal() {
+  const signal = getSelectedSignal();
+  if (!signal) {
+    showToast('Choose a signal', 'Select a vehicle data signal before simulating an alert.');
+    return;
+  }
+  const severity = signal.alertRule.severity;
+  let message;
+  if (/collision|impact|airbag|rollover|crash/i.test(signal.name)) {
+    message = `Demo impact signal for ${signal.name}. This app cannot confirm a crash or call emergency services. Use the vehicle’s own SOS service if help is needed.`;
+  } else if (/drows|fatigue|eye movement|distraction/i.test(signal.name)) {
+    message = `Demo driver attention alert for ${signal.name}. If sleepy, stop somewhere safe and rest. Do not rely on this app to keep you awake.`;
+  } else {
+    message = `Demo ${signal.name} alert. ${severity === 'critical' ? 'Follow the vehicle’s own warning and get to safety.' : 'Check the vehicle manual and its own warning threshold when safely parked.'}`;
+  }
+  triggerAlert(`${signal.name} · simulated`, message, severity);
+}
+
+function applyPreset(name) {
+  const presets = {
+    tyre: ['Low tyre pressure · demo', 'Demo low-pressure signal on the front-left tyre. Stop safely and check pressure against the vehicle placard; readings here are simulated.', 'warning'],
+    fatigue: ['Driver fatigue alert · demo', 'Drowsiness signal simulated. If you feel sleepy, pull over somewhere safe and rest. Do not rely on this assistant to keep you awake.', 'critical'],
+    impact: ['Possible impact signal · demo', 'Impact signal simulated. Check occupants when safe and use the vehicle SOS service if help is needed. Saarthi cannot contact emergency services.', 'critical'],
+    sensor: ['Sensor unavailable · demo', 'A simulated tyre-sensor fault means pressure readings may be unreliable. Check the vehicle display and arrange an inspection when safe.', 'warning'],
+  };
+  const preset = presets[name];
+  if (preset) triggerAlert(...preset);
 }
 
 function chooseRecordingType() {
@@ -245,16 +380,16 @@ function finishRecording({ discard = false, reason = 'manual' } = {}) {
   clearTimeout(noSpeechTimer);
   clearTimeout(maxDurationTimer);
   cancelAnimationFrame(meterFrame);
-  assistantPanel.classList.remove('recording');
-  assistantPanel.classList.toggle('processing', !discard);
+  $('#voiceCard').classList.remove('recording');
+  $('#voiceCard').classList.toggle('processing', !discard);
   micButton.setAttribute('aria-label', 'Start voice assistant');
   micLabel.textContent = discard ? 'TAP TO TRY AGAIN' : 'PROCESSING VOICE';
   if (discard) {
-    vadLabel.textContent = 'NO VOICE DETECTED';
     updateStatus('I didn’t hear speech', 'Move closer to the microphone and try once more.', 'error');
   } else {
-    vadLabel.textContent = reason === 'silence' ? 'SPEECH CAPTURED · SENDING' : 'SENDING FOR RECOGNITION';
-    updateStatus('Processing your voice…', 'Recognizing speech, checking the language, and understanding the request.', 'processing');
+    updateStatus('Processing your voice…', reason === 'silence'
+      ? 'Speech captured. Recognizing words and language, then preparing a spoken reply.'
+      : 'Recognizing speech, checking the language, and understanding the request.', 'processing');
   }
   if (clockTimer) clearInterval(clockTimer);
   clockTimer = null;
@@ -264,10 +399,7 @@ function finishRecording({ discard = false, reason = 'manual' } = {}) {
 
 async function startVoiceDetection(stream) {
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-  if (!AudioContextClass) {
-    inputQuality.textContent = 'VOICE METER UNAVAILABLE';
-    return false;
-  }
+  if (!AudioContextClass) return false;
   try {
     audioContext = new AudioContextClass();
     await audioContext.resume();
@@ -277,65 +409,54 @@ async function startVoiceDetection(stream) {
     analyser.smoothingTimeConstant = 0.25;
     source.connect(analyser);
     const samples = new Uint8Array(analyser.fftSize);
-
-  const inspectAudio = () => {
-    if (!recorder || recorder.state !== 'recording') return;
-    analyser.getByteTimeDomainData(samples);
-    let sum = 0;
-    for (const sample of samples) {
-      const normalized = (sample - 128) / 128;
-      sum += normalized * normalized;
-    }
-    const rms = Math.sqrt(sum / samples.length);
-    const now = performance.now();
-    const elapsed = now - recordingStartedAt;
-
-    if (elapsed < 400 && rms < 0.04) {
-      noiseFloor += rms;
-      noiseSamples += 1;
-    }
-    const measuredNoise = noiseSamples ? noiseFloor / noiseSamples : 0;
-    const threshold = Math.max(0.014, Math.min(0.05, measuredNoise * 2.4 + 0.007));
-    const level = Math.max(0, Math.min(1, (rms - threshold) / 0.16));
-    waveformBars.forEach((bar, index) => {
-      const shape = 0.38 + 0.62 * Math.abs(Math.sin((index + elapsed / 80) * 0.48));
-      const height = Math.round(3 + level * shape * 28);
-      bar.style.setProperty('--bar-height', `${height}px`);
-    });
-
-    if (elapsed < 650) {
-      inputQuality.textContent = 'CALIBRATING ROOM NOISE';
-    } else if (level > 0.15) {
-      inputQuality.textContent = level > 0.55 ? 'SIGNAL STRONG' : 'SIGNAL CLEAR';
-    } else {
-      inputQuality.textContent = 'MIC LISTENING';
-    }
-
-    if (rms > threshold) {
-      loudFrames += 1;
-      if (loudFrames >= 2) {
-        if (!speechStartedAt) {
-          speechStartedAt = now;
-          vadLabel.textContent = 'VOICE ACTIVITY DETECTED';
-          updateStatus('Listening to your voice…', 'Speech detected. Pause naturally when you finish.');
+    const inspectAudio = () => {
+      if (!recorder || recorder.state !== 'recording') return;
+      analyser.getByteTimeDomainData(samples);
+      let sum = 0;
+      for (const sample of samples) {
+        const normalized = (sample - 128) / 128;
+        sum += normalized * normalized;
+      }
+      const rms = Math.sqrt(sum / samples.length);
+      const now = performance.now();
+      const elapsed = now - recordingStartedAt;
+      if (elapsed < 500 && rms < 0.04) {
+        noiseFloor += rms;
+        noiseSamples += 1;
+      }
+      const measuredNoise = noiseSamples ? noiseFloor / noiseSamples : 0;
+      const threshold = Math.max(0.014, Math.min(0.05, measuredNoise * 2.4 + 0.007));
+      const level = Math.max(0, Math.min(1, (rms - threshold) / 0.16));
+      waveformBars.forEach((bar, index) => {
+        const shape = 0.38 + 0.62 * Math.abs(Math.sin((index + elapsed / 80) * 0.48));
+        bar.style.setProperty('--bar-height', `${Math.round(3 + level * shape * 28)}px`);
+      });
+      if (elapsed < 650) voiceHint.textContent = 'Calibrating cabin noise and microphone level…';
+      else if (speechStartedAt) voiceHint.textContent = 'Voice detected. Pause naturally to send; background noise is filtered.';
+      else voiceHint.textContent = 'Listening for your voice. Pause naturally when you finish.';
+      if (rms > threshold) {
+        loudFrames += 1;
+        if (loudFrames >= 2) {
+          if (!speechStartedAt) {
+            speechStartedAt = now;
+            updateStatus('Listening to your voice…', 'Voice detected. Pause naturally when you finish.');
+          }
+          lastVoiceAt = now;
         }
-        lastVoiceAt = now;
+      } else {
+        loudFrames = Math.max(0, loudFrames - 1);
+        if (speechStartedAt && now - lastVoiceAt > SILENCE_TIMEOUT_MS) {
+          finishRecording({ reason: 'silence' });
+          return;
+        }
       }
-    } else {
-      loudFrames = Math.max(0, loudFrames - 1);
-      if (speechStartedAt && now - lastVoiceAt > SILENCE_TIMEOUT_MS) {
-        finishRecording({ reason: 'silence' });
-        return;
-      }
-    }
-    meterFrame = requestAnimationFrame(inspectAudio);
-  };
+      meterFrame = requestAnimationFrame(inspectAudio);
+    };
     meterFrame = requestAnimationFrame(inspectAudio);
     return true;
   } catch {
     if (audioContext && audioContext.state !== 'closed') audioContext.close().catch(() => {});
     audioContext = null;
-    inputQuality.textContent = 'VOICE METER UNAVAILABLE';
     return false;
   }
 }
@@ -345,6 +466,7 @@ async function beginRecording() {
     updateStatus('Microphone unavailable', 'Open this app on localhost or HTTPS in a current browser.', 'error');
     return;
   }
+  micButton.disabled = true;
   try {
     microphoneStream = await navigator.mediaDevices.getUserMedia({
       audio: {
@@ -373,29 +495,27 @@ async function beginRecording() {
     recorder.addEventListener('stop', sendRecording, { once: true });
     recorder.addEventListener('error', () => {
       stopMicTracks();
-      assistantPanel.classList.remove('recording');
-      updateStatus('Microphone recording failed', 'Check your browser microphone permissions, then try again.', 'error');
+      $('#voiceCard').classList.remove('recording');
+      updateStatus('Microphone recording failed', 'Check microphone permissions, then try again.', 'error');
       micButton.disabled = false;
     }, { once: true });
     recordingStartedAt = performance.now();
     recorder.start(200);
-    assistantPanel.classList.add('recording');
-    assistantPanel.classList.remove('error');
+    $('#voiceCard').classList.add('recording');
+    $('#voiceCard').classList.remove('error');
     micButton.setAttribute('aria-label', 'Stop listening and send your voice request');
     micLabel.textContent = 'TAP TO SEND';
-    vadLabel.textContent = 'WAITING FOR SPEECH';
-    updateStatus('Calibrating microphone…', 'Automatic noise filtering and silence detection are active.');
+    updateStatus('Calibrating microphone…', 'Automatic gain, noise filtering, and silence detection are active.');
     const voiceMeterReady = await startVoiceDetection(microphoneStream);
     if (voiceMeterReady) {
       noSpeechTimer = setTimeout(() => {
         if (!speechStartedAt) finishRecording({ discard: true, reason: 'no-speech' });
       }, NO_SPEECH_TIMEOUT_MS);
     } else {
-      updateStatus('Listening… tap when you’re done', 'Live voice detection is unavailable; recording will stop at the 20-second limit.');
+      updateStatus('Listening… tap when done', 'Live voice activity detection is unavailable; the recording stops at 20 seconds.');
     }
     clockTimer = setInterval(() => {
-      const elapsed = performance.now() - recordingStartedAt;
-      recordingTime.textContent = formatDuration(elapsed);
+      recordingTime.textContent = formatDuration(performance.now() - recordingStartedAt);
     }, 150);
     maxDurationTimer = setTimeout(() => {
       if (recorder?.state === 'recording') finishRecording({ reason: 'limit' });
@@ -407,6 +527,8 @@ async function beginRecording() {
     updateStatus(denied ? 'Microphone permission needed' : 'Could not open microphone', denied
       ? 'Allow microphone access in your browser and tap to try again.'
       : 'Check that a microphone is connected and not being used by another app.', 'error');
+  } finally {
+    micButton.disabled = false;
   }
 }
 
@@ -425,31 +547,26 @@ async function sendRecording() {
     micButton.disabled = false;
     return;
   }
-
   const form = new FormData();
   form.append('audio', recording, `saarthi-voice.${extension}`);
   form.append('history', JSON.stringify(conversationHistory.slice(-8)));
   form.append('speed', String(simulatedSpeed));
+  form.append('preferredLanguage', assistantLanguage.value);
   try {
-    const response = await fetch('/api/voice', {
-      method: 'POST',
-      body: form,
-      signal: AbortSignal.timeout(90_000),
-    });
+    const response = await fetch('/api/voice', { method: 'POST', body: form, signal: AbortSignal.timeout(90_000) });
     const result = await response.json();
     if (!response.ok) throw new Error(result.error || 'Voice request failed.');
-
     transcriptText.textContent = result.transcript;
     answerText.textContent = result.answer;
     detectedLanguage.textContent = `${result.detectedLanguage || 'Language detected'}${Number.isFinite(result.languageConfidence) ? ` · ${Math.round(result.languageConfidence * 100)}%` : ''}`;
     replyLanguage.textContent = `SPOKEN ${result.spokenLanguage || 'en-IN'}`;
     if (Number.isFinite(result.languageConfidence)) {
       const percent = Math.max(0, Math.min(100, Math.round(result.languageConfidence * 100)));
-      confidenceValue.textContent = `${percent}%`;
+      confidenceValue.textContent = `LANGUAGE CONFIDENCE · ${percent}%`;
       confidenceBar.style.width = `${percent}%`;
     } else {
-      confidenceValue.textContent = 'DETECTED';
-      confidenceBar.style.width = '72%';
+      confidenceValue.textContent = 'LANGUAGE CONFIDENCE · NOT PROVIDED';
+      confidenceBar.style.width = '0%';
     }
     conversation.hidden = false;
     conversationHistory.push({ role: 'user', content: result.transcript }, { role: 'assistant', content: result.answer });
@@ -457,9 +574,9 @@ async function sendRecording() {
     if (result.audio) {
       answerAudio.src = result.audio;
       answerAudio.hidden = false;
+      answerAudio.volume = Number($('#volumeSlider').value) / 100;
       await answerAudio.play().catch(() => {});
       updateStatus('Reply ready', `Recognized ${result.detectedLanguage || 'your language'} · spoken in ${result.spokenLanguage || 'English'}.`);
-      vadLabel.textContent = 'VOICE RESPONSE READY';
     } else {
       answerAudio.hidden = true;
       updateStatus('Text reply ready', 'Speech generation did not return audio. You can try again.');
@@ -469,151 +586,119 @@ async function sendRecording() {
       ? 'Sarvam took too long to respond. Try a shorter voice request.'
       : error.message || 'Check your connection and try again.';
     updateStatus('Voice request did not complete', message, 'error');
-    vadLabel.textContent = 'REQUEST FAILED · RETRY';
   } finally {
     micLabel.textContent = 'TAP TO SPEAK';
     micButton.setAttribute('aria-label', 'Start voice assistant');
     micButton.disabled = false;
+    recordingTime.textContent = '00:00';
   }
+}
+
+function setDestination(value) {
+  const destination = value.trim().slice(0, 60);
+  if (!destination) return;
+  $('#destinationInput').value = destination;
+  $('#mapDestinationInput').value = destination;
+  $('#mapLabel').textContent = destination.toUpperCase().slice(0, 20);
+  $('#mapLabelLarge').textContent = destination.toUpperCase().slice(0, 24);
+  $('#routeSummary').textContent = `SAMPLE ROUTE · GPS OFFLINE · ${destination}`;
+  $('#mapRouteSummary').textContent = `SAMPLE ROUTE · ${destination} · no live directions`;
+}
+
+function openScreen(name) {
+  $$('.screen').forEach((screen) => {
+    const active = screen.id === `screen-${name}`;
+    screen.hidden = !active;
+    screen.classList.toggle('active', active);
+  });
+  $$('.nav-tab').forEach((tab) => tab.classList.toggle('active', tab.dataset.screen === name));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 micButton.addEventListener('click', () => {
   if (recorder?.state === 'recording') finishRecording({ reason: 'manual' });
   else beginRecording();
 });
-
-document.querySelectorAll('[data-prompt]').forEach((button) => {
-  button.addEventListener('click', () => {
-    document.querySelector('#assistantPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    updateStatus(`Try saying: “${button.dataset.prompt}”`, 'Tap the microphone to ask aloud. This example will not call any vehicle controls.');
-  });
-});
-
-document.querySelector('#navVoice').addEventListener('click', () => {
-  document.querySelector('#assistantPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  micButton.focus({ preventScroll: true });
-});
-
 speedSlider.addEventListener('input', (event) => updateSpeed(event.target.value));
-
-document.querySelector('#lowTireButton').addEventListener('click', () => {
-  setTirePressure('FL', 24);
-  triggerAlert('Tyre pressure low · demo', 'Demo low-pressure signal on the front left tyre. Avoid abrupt braking or cornering and stop safely to check the pressure against the vehicle placard.', 'warning');
-});
-
-document.querySelector('#fatigueButton').addEventListener('click', () => {
-  triggerAlert('Driver fatigue alert · demo', 'Drowsiness signal simulated. If you feel sleepy, pull over somewhere safe and rest. Do not rely on this assistant to keep you awake.', 'critical');
-});
-
-document.querySelector('#impactButton').addEventListener('click', () => {
-  triggerAlert('Possible impact signal · demo', 'Impact signal simulated. Check occupants when safe and use the vehicle SOS service if help is needed. Saarthi cannot contact emergency services.', 'critical');
-});
-
-document.querySelector('#systemFaultButton').addEventListener('click', () => {
-  triggerAlert('Sensor unavailable · demo', 'A simulated tyre sensor fault means pressure readings may be unreliable. Check the vehicle display and arrange an inspection when safe.', 'warning');
-});
-
-document.querySelector('#resetSignalsButton').addEventListener('click', () => {
-  speedSlider.value = '0';
-  updateSpeed(0);
-  speedAlertActive = false;
-  Object.entries({ FL: 34, FR: 34, RL: 33, RR: 33 }).forEach(([position, pressure]) => setTirePressure(position, pressure));
+$('#sensorSearch').addEventListener('input', renderSensors);
+$('#categoryFilter').addEventListener('change', renderSensors);
+$('#alertSignalSelect').addEventListener('change', renderSelectedRule);
+$('#simulateAlertButton').addEventListener('click', simulateSelectedSignal);
+$('#clearAlertsButton').addEventListener('click', () => {
   demoAlerts = [];
   renderAlerts();
   alertRequestNumber += 1;
   if (alertAudio) alertAudio.pause();
   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  showToast('Demo signals reset', 'Simulated speed and tyre readings are back to normal.');
 });
-
-function setDestination(name) {
-  const destination = name.trim().slice(0, 60);
-  if (!destination) return;
-  document.querySelector('#destinationInput').value = destination;
-  document.querySelector('#mapDestinationLabel').textContent = destination.toUpperCase().slice(0, 20);
-  document.querySelector('#routeSummary').textContent = 'SAMPLE ROUTE · GPS OFFLINE';
-  speakAlert(`Demo route selected for ${destination}. This preview has no live GPS or turn-by-turn directions.`, 'info');
-}
-
-document.querySelector('#routeButton').addEventListener('click', () => setDestination(document.querySelector('#destinationInput').value));
-document.querySelector('#destinationInput').addEventListener('keydown', (event) => {
-  if (event.key === 'Enter') setDestination(event.currentTarget.value);
-});
-document.querySelectorAll('[data-destination]').forEach((button) => {
-  button.addEventListener('click', () => setDestination(button.dataset.destination));
-});
-
-document.querySelector('#mapsButton').addEventListener('click', () => {
-  document.querySelector('#navigationPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  document.querySelector('#destinationInput').focus({ preventScroll: true });
-});
-
-document.querySelector('#youtubeMusicButton').addEventListener('click', () => {
-  showToast('YouTube Music preview', 'Audio-only app tile is ready; a real YouTube Music connection is not configured.');
-});
-
-videoApp.addEventListener('click', () => {
+$$('[data-alert-preset]').forEach((button) => button.addEventListener('click', () => applyPreset(button.dataset.alertPreset)));
+$$('[data-screen]').forEach((button) => button.addEventListener('click', () => openScreen(button.dataset.screen)));
+$$('[data-go]').forEach((button) => button.addEventListener('click', () => openScreen(button.dataset.go)));
+$$('[data-destination]').forEach((button) => button.addEventListener('click', () => setDestination(button.dataset.destination)));
+$('#routeButton').addEventListener('click', () => setDestination($('#destinationInput').value));
+$('#destinationInput').addEventListener('keydown', (event) => { if (event.key === 'Enter') setDestination(event.currentTarget.value); });
+$('#mapRouteButton').addEventListener('click', () => setDestination($('#mapDestinationInput').value));
+$('#mapDestinationInput').addEventListener('keydown', (event) => { if (event.key === 'Enter') setDestination(event.currentTarget.value); });
+$('#mapsButton').addEventListener('click', () => openScreen('maps'));
+$('#youtubeMusicButton').addEventListener('click', () => showToast('YouTube Music preview', 'Audio-only app tile preview. A real account and media service are not connected.'));
+$('#videoShortcut').addEventListener('click', () => {
   if (simulatedSpeed > 0) return;
-  showToast('Parked video preview', 'Video is limited to parked mode here. Connect an approved video app to provide playback.');
+  showToast('Parked video preview', 'Video is limited to parked mode in this prototype. No video service is connected.');
+});
+$('#youtubeVideoButton').addEventListener('click', () => {
+  if (simulatedSpeed === 0) showToast('Parked video preview', 'No video service is connected. Use an approved in-car app integration.');
 });
 
-const mediaPlayer = document.querySelector('#mediaPlayer');
-const musicButton = document.querySelector('#musicButton');
-const playPauseButton = document.querySelector('#playPauseButton');
 function toggleDemoPlayer() {
-  const playing = mediaPlayer.classList.toggle('playing');
-  playPauseButton.textContent = playing ? 'Ⅱ' : '▶';
-  playPauseButton.setAttribute('aria-label', playing ? 'Pause player preview' : 'Play player preview');
-  document.querySelector('#musicState').textContent = playing ? 'PLAYER UI PREVIEW' : 'PLAYER UI PREVIEW';
+  const player = $('#mediaPlayer');
+  const playing = player.classList.toggle('playing');
+  $('#playPauseButton').textContent = playing ? 'Ⅱ' : '▶';
+  $('#musicState').textContent = playing ? 'PREVIEW PLAYING' : 'PAUSED';
   if (demoPlayerTimer) clearInterval(demoPlayerTimer);
   if (playing) {
     demoPlayerTimer = setInterval(() => {
       demoPlayerProgress = demoPlayerProgress >= 95 ? 8 : demoPlayerProgress + 1;
-      document.querySelector('#trackProgress').style.width = `${demoPlayerProgress}%`;
+      $('#trackProgress').style.width = `${demoPlayerProgress}%`;
     }, 1100);
-    showToast('Music player preview', 'This is a simulated player. A real music service is not connected.');
+    showToast('Player preview', 'This is a simulated player interface. It does not play audio.');
   }
 }
-musicButton.addEventListener('click', toggleDemoPlayer);
-playPauseButton.addEventListener('click', toggleDemoPlayer);
-
-document.querySelector('#volumeSlider').addEventListener('input', (event) => {
+$('#musicButton').addEventListener('click', toggleDemoPlayer);
+$('#playPauseButton').addEventListener('click', toggleDemoPlayer);
+$('#volumeSlider').addEventListener('input', (event) => {
   const volume = Number(event.target.value);
-  document.querySelector('#volumeValue').textContent = String(volume);
+  $('#volumeValue').textContent = String(volume);
   answerAudio.volume = volume / 100;
   if (alertAudio) alertAudio.volume = volume / 100;
 });
-document.querySelector('#balanceSlider').addEventListener('input', (event) => {
-  const value = Number(event.target.value);
-  document.querySelector('#balanceValue').textContent = value === 0 ? 'CENTER' : value < 0 ? `LEFT ${Math.abs(value)}` : `RIGHT ${value}`;
-});
 
-document.querySelectorAll('.nav-item').forEach((item) => {
-  item.addEventListener('click', () => {
-    const targetId = item.id === 'navVoice' ? 'assistantPanel'
-      : item.getAttribute('aria-label') === 'Cockpit overview' ? 'assistantPanel'
-        : item.getAttribute('aria-label') === 'Vehicle systems' ? 'tirePanel'
-          : item.getAttribute('aria-label') === 'Settings' ? 'systemPanel' : 'assistantPanel';
-    document.querySelector(`#${targetId}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
-    document.querySelectorAll('.nav-item').forEach((navItem) => navItem.classList.toggle('active', navItem === item));
-  });
-});
+function updateClock() {
+  $('#clock').textContent = new Intl.DateTimeFormat(undefined, { hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date());
+}
 
 renderAlerts();
 updateSpeed(0);
-answerAudio.volume = Number(document.querySelector('#volumeSlider').value) / 100;
-
-function updateClock() {
-  document.querySelector('#clock').textContent = new Intl.DateTimeFormat(undefined, {
-    hour: '2-digit', minute: '2-digit', hour12: false,
-  }).format(new Date());
-}
+answerAudio.volume = Number($('#volumeSlider').value) / 100;
 updateClock();
 setInterval(updateClock, 30_000);
+
+fetch('/data/sensor-catalog.json')
+  .then((response) => {
+    if (!response.ok) throw new Error('Sample catalogue could not be loaded.');
+    return response.json();
+  })
+  .then((data) => {
+    catalog = data;
+    renderCatalog();
+  })
+  .catch(() => {
+    $('#sensorList').textContent = 'Sample data is unavailable. Restart the server and reload this page.';
+    $('#resultCount').textContent = 'Catalogue unavailable';
+  });
 
 fetch('/api/health')
   .then((response) => response.json())
   .then((status) => {
-    if (!status.ready) updateStatus('Add your Sarvam API key', 'Set SARVAM_API_KEY in the local .env file.', 'error');
+    if (!status.ready) updateStatus('Add your Sarvam API key', 'Set SARVAM_API_KEY in your local .env file.', 'error');
   })
   .catch(() => updateStatus('Start the local server', 'Run npm start to open the voice assistant.', 'error'));
