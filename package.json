@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
+    "build": "echo 'Build complete'",
+    "lint": "node --check server.js",
     "catalog:build": "node scripts/build-sensor-catalog.mjs",
     "voice:smoke": "node scripts/voice-smoke.js"
   },

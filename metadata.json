@@ -1,0 +1,7 @@
+{
+  "name": "Saarthi — Vehicle Monitor & Voice Assistant",
+  "description": "Multilingual voice assistant prototype for connected vehicles powered by Sarvam AI",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

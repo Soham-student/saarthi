@@ -525,7 +525,7 @@ async function beginRecording() {
     microphoneStream = null;
     const denied = error?.name === 'NotAllowedError' || error?.name === 'SecurityError';
     updateStatus(denied ? 'Microphone permission needed' : 'Could not open microphone', denied
-      ? 'Allow microphone access in your browser and tap to try again.'
+      ? 'Microphone access is blocked or unavailable in this browser preview. You can type your request in the box below instead.'
       : 'Check that a microphone is connected and not being used by another app.', 'error');
   } finally {
     micButton.disabled = false;
@@ -615,11 +615,69 @@ function openScreen(name) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+async function sendTextQuery(text) {
+  const query = text.trim();
+  if (!query) return;
+  updateStatus('Sending request to Saarthi…', 'Processing your question and preparing a reply.', 'processing');
+  const form = new FormData();
+  form.append('text', query);
+  form.append('history', JSON.stringify(conversationHistory.slice(-8)));
+  form.append('speed', String(simulatedSpeed));
+  form.append('preferredLanguage', assistantLanguage.value);
+  try {
+    const response = await fetch('/api/voice', { method: 'POST', body: form, signal: AbortSignal.timeout(30_000) });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Voice request failed.');
+    transcriptText.textContent = result.transcript;
+    answerText.textContent = result.answer;
+    detectedLanguage.textContent = `${result.detectedLanguage || 'en-IN'}${Number.isFinite(result.languageConfidence) ? ` · ${Math.round(result.languageConfidence * 100)}%` : ''}`;
+    replyLanguage.textContent = `SPOKEN ${result.spokenLanguage || 'en-IN'}`;
+    if (Number.isFinite(result.languageConfidence)) {
+      const percent = Math.max(0, Math.min(100, Math.round(result.languageConfidence * 100)));
+      confidenceValue.textContent = `LANGUAGE CONFIDENCE · ${percent}%`;
+      confidenceBar.style.width = `${percent}%`;
+    } else {
+      confidenceValue.textContent = 'LANGUAGE CONFIDENCE · NOT PROVIDED';
+      confidenceBar.style.width = '0%';
+    }
+    conversation.hidden = false;
+    conversationHistory.push({ role: 'user', content: result.transcript }, { role: 'assistant', content: result.answer });
+    conversationHistory = conversationHistory.slice(-8);
+    if (result.audio) {
+      answerAudio.src = result.audio;
+      answerAudio.hidden = false;
+      answerAudio.volume = Number($('#volumeSlider').value) / 100;
+      await answerAudio.play().catch(() => {});
+      updateStatus('Reply ready', `Answer prepared in ${result.spokenLanguage || 'English'}.`);
+    } else {
+      answerAudio.hidden = true;
+      updateStatus('Text reply ready', 'Answer generated successfully.');
+    }
+  } catch (error) {
+    updateStatus('Request did not complete', error.message || 'Check your connection and try again.', 'error');
+  } finally {
+    const textInput = $('#voiceTextInput');
+    if (textInput) textInput.value = '';
+  }
+}
+
 micButton.addEventListener('click', () => {
   if (recorder?.state === 'recording') finishRecording({ reason: 'manual' });
   else beginRecording();
 });
+$('#voiceTextSend').addEventListener('click', () => sendTextQuery($('#voiceTextInput').value));
+$('#voiceTextInput').addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') sendTextQuery(event.currentTarget.value);
+});
+$$('[data-prompt]').forEach((button) => button.addEventListener('click', () => sendTextQuery(button.dataset.prompt)));
 speedSlider.addEventListener('input', (event) => updateSpeed(event.target.value));
+$$('[data-speed]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const val = Number(button.dataset.speed);
+    speedSlider.value = String(val);
+    updateSpeed(val);
+  });
+});
 $('#sensorSearch').addEventListener('input', renderSensors);
 $('#categoryFilter').addEventListener('change', renderSensors);
 $('#alertSignalSelect').addEventListener('change', renderSelectedRule);
@@ -702,3 +760,35 @@ fetch('/api/health')
     if (!status.ready) updateStatus('Add your Sarvam API key', 'Set SARVAM_API_KEY in your local .env file.', 'error');
   })
   .catch(() => updateStatus('Start the local server', 'Run npm start to open the voice assistant.', 'error'));
+
+async function requestMicrophoneAccess() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream.getTracks().forEach((track) => track.stop());
+    $('#micPermissionBanner')?.classList.add('granted');
+    showToast('Microphone ready', 'Microphone permission granted successfully. You can now tap to speak!');
+    updateStatus('Microphone ready', 'Tap the mic button and speak naturally.');
+  } catch (error) {
+    showToast('Permission denied', 'Microphone permission was blocked or denied in your browser settings.', 'warning');
+    updateStatus('Microphone permission needed', 'Allow microphone access in your browser settings to use voice input, or type your request below.', 'error');
+  }
+}
+
+$('#requestMicButton')?.addEventListener('click', requestMicrophoneAccess);
+
+async function checkMicPermission() {
+  if (navigator.permissions?.query) {
+    try {
+      const permissionStatus = await navigator.permissions.query({ name: 'microphone' });
+      if (permissionStatus.state === 'granted') {
+        $('#micPermissionBanner')?.classList.add('granted');
+      }
+      permissionStatus.onchange = () => {
+        if (permissionStatus.state === 'granted') {
+          $('#micPermissionBanner')?.classList.add('granted');
+        }
+      };
+    } catch {}
+  }
+}
+checkMicPermission();

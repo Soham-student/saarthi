@@ -37,6 +37,13 @@
               <div class="drive-card-head"><span>VEHICLE STATUS</span><span class="gear-badge">P</span></div>
               <div class="speed-face"><div class="speed-number"><strong id="speedValue">0</strong><span>km/h</span></div><div class="speed-arc"><i id="speedArc"></i></div><span class="speed-caption">CURRENT SPEED · DEMO</span></div>
               <label class="speed-control" for="speedSlider"><span>SIMULATE SPEED</span><b><span id="speedReadout">0</span> km/h</b><input id="speedSlider" type="range" min="0" max="120" value="0" /><small>Voice replies shorten while moving · demo overspeed alert at 90 km/h</small></label>
+              <div class="drive-mode-presets">
+                <span>QUICK DRIVE MODES:</span>
+                <button type="button" data-speed="0">Park (0)</button>
+                <button type="button" data-speed="40">City (40)</button>
+                <button type="button" data-speed="80">Cruise (80)</button>
+                <button type="button" data-speed="100">Overspeed (100)</button>
+              </div>
               <div class="drive-mini-stats"><div><small>RANGE</small><b>412 <i>km</i></b></div><div><small>BATTERY</small><b>86 <i>%</i></b></div><div><small>FUEL SAMPLE</small><b>64 <i>%</i></b></div></div>
             </section>
 
@@ -60,12 +67,27 @@
           <div class="main-cards">
             <section class="voice-card" id="voiceCard">
               <div class="section-head"><div><span class="eyebrow">SARVAM VOICE ASSISTANT</span><h2>Talk to Saarthi</h2></div><span class="language-hint">Auto-detect · 22 Indic languages + English</span></div>
+              <div class="mic-permission-banner" id="micPermissionBanner">
+                <span>Microphone access required for voice control</span>
+                <button id="requestMicButton" type="button">Enable Microphone</button>
+              </div>
               <div class="voice-content">
                 <div class="voice-control">
                   <button class="mic-button" id="micButton" type="button" aria-label="Start voice assistant"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3m-4 0h8"></path></svg></button>
                   <span id="micLabel">TAP TO SPEAK</span><span id="recordingTime">00:00</span>
                 </div>
                 <div class="voice-status" aria-live="polite"><b id="voiceState">Ready to listen</b><small id="voiceHint">Pause naturally when you finish. I’ll detect speech and send after silence.</small><div class="voice-meter" id="waveform" aria-hidden="true"></div></div>
+              </div>
+              <div class="voice-text-input-row">
+                <input id="voiceTextInput" type="text" placeholder="Or type your request to Saarthi (e.g. What is my range?)" aria-label="Type message to Saarthi" maxlength="200" />
+                <button id="voiceTextSend" type="button">Send</button>
+              </div>
+              <div class="voice-quick-chips">
+                <span>QUICK ASK:</span>
+                <button type="button" data-prompt="What is my battery range?">Range?</button>
+                <button type="button" data-prompt="Check tyre pressure">Tyres</button>
+                <button type="button" data-prompt="Navigate to charging hub">Charging hub</button>
+                <button type="button" data-prompt="Vehicle status check">Status</button>
               </div>
               <div class="voice-results" id="conversation" hidden>
                 <div><span class="result-tag">YOU · <span id="detectedLanguage">AUTO</span></span><p id="transcriptText"></p></div>
